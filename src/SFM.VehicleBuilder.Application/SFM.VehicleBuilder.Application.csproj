@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+			<TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\SFM.VehicleBuilder.Application.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>.\SFM.VehicleBuilder.Application.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\InsertVehicle\**" />
+    <Compile Remove="Queries\GetVendors\**" />
+    <EmbeddedResource Remove="Commands\InsertVehicle\**" />
+    <EmbeddedResource Remove="Queries\GetVendors\**" />
+    <None Remove="Commands\InsertVehicle\**" />
+    <None Remove="Queries\GetVendors\**" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Compile Remove="Commands\InsertVehicle\**" />
+    <EmbeddedResource Remove="Commands\InsertVehicle\**" />
+    <None Remove="Commands\InsertVehicle\**" />
+  </ItemGroup>-->
+
+  <ItemGroup>
+    <PackageReference Include="Ben.Demystifier" Version="0.3.0" />
+    <PackageReference Include="FluentValidation" Version="9.5.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SFM.VehicleBuilder.Data\SFM.VehicleBuilder.Data.csproj" />
+    <ProjectReference Include="..\SFM.VehicleBuilder.Domain\SFM.VehicleBuilder.Domain.csproj" />
+  </ItemGroup>
+</Project>
