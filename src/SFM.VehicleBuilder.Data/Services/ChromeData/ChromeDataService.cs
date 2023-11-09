@@ -45,5 +45,21 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
             var divisionsRes = await client.getDivisionsAsync(divisionReq);
             return divisionsRes.DivisionArrayElement;
         }
+
+        public async Task<IEnumerable<Model>> GetModels(int modelYear, int divisionId)
+        {
+            var modelReq = new getModelsByDivisionRequest()
+            {
+                ModelsByDivisionRequest = new ModelsByDivisionRequest
+                {
+                    accountInfo = accountInfo,
+                    filterRules = new FilterRules(),
+                    modelYear = modelYear,
+                    divisionId = divisionId,
+                },
+            };
+            var modelRes = await client.getModelsByDivisionAsync(modelReq);
+            return modelRes.ModelArrayElement;
+        }
     }
 }
