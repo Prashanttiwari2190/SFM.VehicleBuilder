@@ -5,6 +5,7 @@ using ChromeData;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SFM.VehicleBuilder.Data.Services.ChromeData;
 
 namespace SFM.VehicleBuilder.Data
 {
@@ -59,18 +60,7 @@ namespace SFM.VehicleBuilder.Data
             // Http Clients
 
             // Web Services
-            /*
-            .AddScoped(() =>
-            {
-                var accountInfo = new AccountInfo
-                {
-                    accountNumber = "309700",
-                    accountSecret = "sew700",
-                };
-                var client = new AutomotiveConfigCompareService4hPortTypeClient();
-                return client;
-            })
-            */
+            .AddScoped<IChromeDataService, ChromeDataService>()
             ;
 
             return services;
