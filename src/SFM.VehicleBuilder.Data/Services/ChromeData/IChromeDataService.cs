@@ -21,5 +21,13 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
         /// <param name="modelYear">.</param>
         /// <returns>Returns a <see cref="Task"/>.</returns>
         Task<IEnumerable<Division>> GetDivisions(int modelYear);
+
+        /// <summary>
+        ///   Gets vehicle divison models.
+        /// </summary>
+        /// <param name="modelYear">.</param>
+        /// <param name="divisionId">A division Id.</param>
+        /// <returns>Returns a <see cref="Task"/>.</returns>
+        Task<IEnumerable<Model>> GetModels(int modelYear, int divisionId);
     }
 }
