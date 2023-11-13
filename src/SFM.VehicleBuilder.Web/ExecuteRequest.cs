@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SFM.VehicleBuilder.Application.Exceptions;
 
 namespace SFM.VehicleBuilder.Web
 {
@@ -26,20 +27,24 @@ namespace SFM.VehicleBuilder.Web
             {
                 return await action();
             }
+            catch (InvalidCommandOrQueryException e)
+            {
+                logger.LogError(e, "Validation errors in command or query: { validationErrors}", string.Join(' ', e.ValidationErrors));
 
-            // catch (InvalidCommandOrQueryException e) { logger.LogError(e, "Validation errors in command or query:
-            // {validationErrors}", string.Join(' ', e.ValidationErrors));
+                return controller.StatusCode(e.StatusCode, string.Join(' ', e.ValidationErrors));
+            }
+            catch (BaseApplicationException e)
+            {
+                logger.LogError(e, e.Message.Replace("{", "[").Replace("}", "]"));
 
-            // return controller.StatusCode(e.StatusCode, string.Join(' ', e.ValidationErrors)); } catch
-            // (BaseApplicationException e) { logger.LogError(e, e.Message.Replace("{", "[").Replace("}", "]"));
+                return controller.StatusCode(e.StatusCode, e.ClientMessage);
+            }
+            catch (Data.Exceptions.BaseDataException e)
+            {
+                logger.LogError(e, e.Message.Replace("{", "[").Replace("}", "]"));
 
-            // return controller.StatusCode(e.StatusCode, e.ClientMessage); } catch
-            // (Domain.Exceptions.BaseDomainException e) { logger.LogError(e, e.Message.Replace("{", "[").Replace("}", "]"));
-
-            // return controller.StatusCode(e.StatusCode, e.ClientMessage); } catch (Data.Exceptions.BaseDataException
-            // e) { logger.LogError(e, e.Message.Replace("{", "[").Replace("}", "]"));
-
-            // return controller.StatusCode(e.StatusCode, e.ClientMessage); }
+                return controller.StatusCode(e.StatusCode, e.ClientMessage);
+            }
             catch (Exception e)
             {
                 logger.LogError(e, e.Message.Replace("{", "[").Replace("}", "]"));
