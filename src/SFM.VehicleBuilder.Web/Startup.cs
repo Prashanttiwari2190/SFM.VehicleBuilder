@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SFM.VehicleBuilder.Application;
 using SFM.VehicleBuilder.Data;
+using SFM.VehicleBuilder.Domain.Correlation;
 
 namespace SFM.VehicleBuilder.Web
 {
@@ -69,6 +70,7 @@ namespace SFM.VehicleBuilder.Web
                  .AddDataServices(Configuration)
                  .AddApplicationServices(Configuration)
                  .AddApiVersioning()
+                 .AddScoped(provider => new CorrelationId())
                  ;
         }
     }
