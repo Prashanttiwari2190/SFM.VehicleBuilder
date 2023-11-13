@@ -17,6 +17,14 @@ namespace SFM.VehicleBuilder.Domain.Correlation
         /// <summary>
         ///   Initializes a new instance of the <see cref="CorrelationId"/> class.
         /// </summary>
+        public CorrelationId()
+            : this(Guid.NewGuid())
+        {
+        }
+
+        /// <summary>
+        ///   Initializes a new instance of the <see cref="CorrelationId"/> class.
+        /// </summary>
         /// <param name="value">The value of the correlation id.</param>
         public CorrelationId(Guid value)
         {
