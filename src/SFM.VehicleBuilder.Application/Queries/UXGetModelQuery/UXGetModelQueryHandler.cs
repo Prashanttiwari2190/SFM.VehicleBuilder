@@ -26,7 +26,7 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetModelQuery
                         {
                             ModelId = i.modelId,
                             ModelName = i.modelName,
-                        }).ToArray();
+                        }).ToList();
             return models;
         }
     }

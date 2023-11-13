@@ -26,7 +26,7 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetMakeQuery
                           {
                               DivisionId = i.divisionId,
                               DivisionName = i.divisionName,
-                          }).ToArray();
+                          }).ToList();
             return divisions;
         }
     }
