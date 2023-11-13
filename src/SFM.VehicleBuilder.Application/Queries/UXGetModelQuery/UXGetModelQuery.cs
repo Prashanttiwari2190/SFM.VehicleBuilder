@@ -1,6 +1,6 @@
-﻿using ChromeData;
-using MediatR;
+﻿using MediatR;
 using SFM.VehicleBuilder.Domain.Correlation;
+using SFM.VehicleBuilder.Domain.Models;
 using System.Collections.Generic;
 
 namespace SFM.VehicleBuilder.Application.Queries.UXGetModelQuery
