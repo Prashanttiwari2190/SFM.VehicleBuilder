@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using ChromeData;
 using DocumentFormat.OpenXml.Bibliography;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -14,6 +13,7 @@ using SFM.VehicleBuilder.Application.Queries.UXGetMakeQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetModelQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetYearQuery;
 using SFM.VehicleBuilder.Domain.Correlation;
+using SFM.VehicleBuilder.Domain.Models;
 
 namespace SFM.VehicleBuilder.Web.Controllers.V1
 {
@@ -22,24 +22,24 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
     /// </summary>
     [ApiController]
     [ApiVersion("1.0")]
-    [ApiExplorerSettings(GroupName = "Vehicle Builder")]
+    [ApiExplorerSettings(GroupName = "Vehicle")]
     [Produces("application/json")]
-    [Route("api/v{version:apiVersion}/vehicle-builder")]
-    public class UxVehicleBuilderController : ControllerBase
+    [Route("api/v{version:apiVersion}/vehicle")]
+    public class UxVehicleController : ControllerBase
     {
-        private readonly ILogger<UxVehicleBuilderController> logger;
+        private readonly ILogger<UxVehicleController> logger;
         private readonly IMediator mediator;
         private readonly CorrelationId correlationId;
 
         /// <summary>
-        ///   Initializes a new instance of the <see cref="UxVehicleBuilderController"/> class.
+        ///   Initializes a new instance of the <see cref="UxVehicleController"/> class.
         /// </summary>
         /// <param name="mediator">An instance of an <see cref="IMediator"/>.</param>
         /// <param name="logger">The <see cref="ILogger"/> to use for logging.</param>
         /// <param name="correlationId">The <see cref="CorrelationId"/>The correlation ID used to track requests through the system.</param>
-        public UxVehicleBuilderController(
+        public UxVehicleController(
             IMediator mediator,
-            ILogger<UxVehicleBuilderController> logger,
+            ILogger<UxVehicleController> logger,
             CorrelationId correlationId)
         {
             this.logger = logger;
@@ -56,7 +56,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 401)]
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
-        [HttpGet("{year}")]
+        [HttpGet("make/{year}")]
         public async Task<ActionResult<IEnumerable<Division>>> GetMake([FromRoute] int year)
         {
             var query = new UXGetMakeQuery(correlationId)
@@ -89,7 +89,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 401)]
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
-        [HttpGet("{year}/{division}")]
+        [HttpGet("{year}/model/{division}")]
         public async Task<ActionResult<IEnumerable<Model>>> GetModel([FromRoute] int year, [FromRoute] int division)
         {
             var query = new UXGetModelQuery(correlationId)
