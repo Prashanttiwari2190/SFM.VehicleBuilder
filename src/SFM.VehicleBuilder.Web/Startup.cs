@@ -72,6 +72,16 @@ namespace SFM.VehicleBuilder.Web
                  .AddApiVersioning()
                  .AddScoped(provider => new CorrelationId())
                  ;
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
         }
     }
 }
