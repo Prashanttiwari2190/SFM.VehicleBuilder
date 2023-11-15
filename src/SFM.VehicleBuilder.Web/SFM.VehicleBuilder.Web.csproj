@@ -20,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="ChromeData\chromeDataStatic.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -35,5 +39,11 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ChromeData\chromeDataStatic.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
