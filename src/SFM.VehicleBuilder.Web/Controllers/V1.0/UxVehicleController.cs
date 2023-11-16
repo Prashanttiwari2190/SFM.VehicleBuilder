@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using SFM.VehicleBuilder.Application.Queries.SampleQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetMakeQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetModelQuery;
+using SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetYearQuery;
 using SFM.VehicleBuilder.Domain.Correlation;
 using SFM.VehicleBuilder.Domain.Models;
@@ -102,23 +103,15 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         }
 
         /// <summary>
-        ///   Gets the CabStyle list.
+        ///   Gets the CabStyleOptions.
         /// </summary>
         /// <returns>Returns a <see cref="string"/> containg the status of the work order.</returns>
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 401)]
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
-        [HttpGet("")]
-        public async Task<ActionResult<string>> GetCabStyle()
-        {
-            await this.Execute(logger, () => mediator.Send(new SampleQuery(new CorrelationId(Guid.NewGuid()))));
-
-            /*=> this.Execute(logger, () => mediator.Send(new GetWorkOrderStatusQuery
-            // { WorkOrderNumber = workOrderNumber, }));*/
-
-            throw new NotImplementedException();
-        }
+        [HttpGet("style-options")]
+        public async Task<ActionResult<StyleOptions>> CabStyleOption() => await this.Execute(logger, () => mediator.Send(new UXGetStyleOptionsQuery(correlationId), CancellationToken.None));
 
         /// <summary>
         ///   Gets the GetWheelbase list.

@@ -1,0 +1,181 @@
+{
+  "ExteriorColor": [
+    {
+      "ColorId": "BLACK",
+      "ColorName": "Black",
+      "ColorCode": "#00000"
+    },
+    {
+      "ColorId": "BLUE",
+      "ColorName": "Blue",
+      "ColorCode": "#6A5ACD"
+    },
+    {
+      "ColorId": "BROWN",
+      "ColorName": "Brown",
+      "ColorCode": "#A52A2A"
+    },
+    {
+      "ColorId": "COPPER",
+      "ColorName": "Copper",
+      "ColorCode": "#b87333"
+    },
+    {
+      "ColorId": "GOLD",
+      "ColorName": "Gold",
+      "ColorCode": "#FFD700"
+    },
+    {
+      "ColorId": "GRAY",
+      "ColorName": "Gray",
+      "ColorCode": "#808080"
+    },
+    {
+      "ColorId": "GREEN",
+      "ColorName": "Green",
+      "ColorCode": "#008000"
+    },
+    {
+      "ColorId": "MAROON",
+      "ColorName": "Maroon",
+      "ColorCode": "#800000"
+    },
+    {
+      "ColorId": "NON-COLOR",
+      "ColorName": "Non-Color",
+      "ColorCode": "#00000"
+    },
+    {
+      "ColorId": "ORANGE",
+      "ColorName": "Orange",
+      "ColorCode": "#FFA500"
+    },
+    {
+      "ColorId": "PURPLE",
+      "ColorName": "Purple",
+      "ColorCode": "#800080"
+    },
+    {
+      "ColorId": "RED",
+      "ColorName": "Red",
+      "ColorCode": "#FF0000"
+    },
+    {
+      "ColorId": "SILVER",
+      "ColorName": "Silver",
+      "ColorCode": "#C0C0C0"
+    },
+    {
+      "ColorId": "TAN",
+      "ColorName": "Tan",
+      "ColorCode": "#D2B48C"
+    },
+    {
+      "ColorId": "TEAL",
+      "ColorName": "Teal",
+      "ColorCode": "#008080"
+    },
+    {
+      "ColorId": "WHITE",
+      "ColorName": "White",
+      "ColorCode": "#FFFFFF"
+    },
+    {
+      "ColorId": "YELLOW",
+      "ColorName": "Yellow",
+      "ColorCode": "#FFFF00"
+    }
+
+  ],
+  "CabStyle": [
+    {
+      "CabStyleId": 1,
+      "CabStyleName": "2dr Car"
+    },
+    {
+      "CabStyleId": 2,
+      "CabStyleName": "4dr Car"
+    },
+    {
+      "CabStyleId": 3,
+      "CabStyleName": "Regular Cab Pickup"
+    },
+    {
+      "CabStyleId": 4,
+      "CabStyleName": "Extended Cab Pickup"
+    },
+    {
+      "CabStyleId": 5,
+      "CabStyleName": "Crew Cab Pickup"
+    },
+    {
+      "CabStyleId": 6,
+      "CabStyleName": "Convertible"
+    },
+    {
+      "CabStyleId": 7,
+      "CabStyleName": "Station Wagon"
+
+    },
+    {
+      "CabStyleId": 8,
+      "CabStyleName": "Long Bed"
+
+    },
+    {
+      "CabStyleId": 9,
+      "CabStyleName": "Short Bed"
+
+    },
+    {
+      "CabStyleId": 10,
+      "CabStyleName": "Regular Cab Chassis-Cab"
+
+    },
+    {
+      "CabStyleId": 11,
+      "CabStyleName": "Extended Cab Chassis-Cab"
+
+    },
+    {
+      "CabStyleId": 12,
+      "CabStyleName": "Crew Cab Chassis-Cab"
+
+    },
+    {
+      "CabStyleId": 13,
+      "CabStyleName": "Sport Utility"
+
+    },
+    {
+      "CabStyleId": 14,
+      "CabStyleName": "Mini-van, Passenger"
+
+    },
+    {
+      "CabStyleId": 15,
+      "CabStyleName": "Mini-van, Cargo"
+
+    },
+    {
+      "CabStyleId": 16,
+      "CabStyleName": "Full-size Passenger Van"
+    },
+    {
+      "CabStyleId": 17,
+      "CabStyleName": "Full-size Cargo Van"
+
+    },
+    {
+      "CabStyleId": 18,
+      "CabStyleName": "Specialty Vehicle"
+
+    },
+    {
+      "CabStyleId": 19,
+      "CabStyleName": "Stepside Bed"
+
+    }
+
+  ]
+}
