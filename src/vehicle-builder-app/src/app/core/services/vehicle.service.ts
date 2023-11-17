@@ -6,6 +6,7 @@ import { IYear } from 'src/app/models/IYear';
 import { IModel } from 'src/app/models/IModel';
 import { environment } from 'src/environments/environment';
 import { IDivision } from 'src/app/models/IDevision';
+import { IStyleOptions } from 'src/app/models/IStyleOptions';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class VehicleService {
 
   getModels(year: number, make: number): Observable<IModel[]> {
     return this.http.get<IModel[]>(environment.apiBaseUrl + `vehicle/${year}/model/${make}`);
+  }
+
+  getStyleOptions(): Observable<IStyleOptions> {
+    return this.http.get<IStyleOptions>(environment.apiBaseUrl + `vehicle/style-options`);
   }
   
 }
