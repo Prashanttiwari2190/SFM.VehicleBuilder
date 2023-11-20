@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using SFM.VehicleBuilder.Application.Extensions;
 using SFM.VehicleBuilder.Domain.Models;
 
 namespace SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery
@@ -18,7 +18,9 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery
 
         public async Task<StyleOptions> Handle(UXGetStyleOptionsQuery request, CancellationToken cancellationToken)
         {
-            var styleOption = await FileExtension.FileRead();
+            var filepath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            filepath = filepath + @"\ChromeData\chromeDataStatic.json";
+            var styleOption = await filepath.ReadJsonFileAsModel<StyleOptions>();
             return styleOption;
         }
     }

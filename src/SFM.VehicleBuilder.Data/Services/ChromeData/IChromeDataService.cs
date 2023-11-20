@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ChromeData;
+using SFM.VehicleBuilder.Domain.Models.ChromeData;
 
 namespace SFM.VehicleBuilder.Data.Services.ChromeData
 {
@@ -29,5 +30,12 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
         /// <param name="divisionId">A division Id.</param>
         /// <returns>Returns a <see cref="Task"/>.</returns>
         Task<IEnumerable<Model>> GetModels(int modelYear, int divisionId);
+
+        /// <summary>
+        ///   Gets vehicle divison models.
+        /// </summary>
+        /// <param name="styleFilter">.</param>
+        /// <returns>Returns a <see cref="Task"/>.</returns>
+        Task<IEnumerable<Style>> GetStyles(StyleFilter styleFilter);
     }
 }
