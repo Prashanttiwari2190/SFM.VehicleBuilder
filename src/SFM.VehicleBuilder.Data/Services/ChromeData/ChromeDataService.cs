@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SFM.VehicleBuilder.Domain.Models.ChromeData;
 
 namespace SFM.VehicleBuilder.Data.Services.ChromeData
 {
@@ -60,6 +61,48 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
             };
             var modelRes = await client.getModelsByDivisionAsync(modelReq);
             return modelRes.ModelArrayElement;
+        }
+
+        public async Task<IEnumerable<Style>> GetStyles(StyleFilter styleFilter)
+        {
+            var criteriaList = new List<SearchCriterion>
+            {
+                new SearchCriterion() // Search By Year
+                {
+                    name = SearchTokenName.year,
+                    type = SearchCriterionType.NumberRange,
+                    min = styleFilter.Year,
+                    max = styleFilter.Year,
+                },
+                new SearchCriterion() // Search By Divison Id
+                {
+                    name = SearchTokenName.divisionId,
+                    type = SearchCriterionType.String,
+                    value = styleFilter.DivisionId,
+                },
+            };
+
+            // TODO Add more filter: Apoorv
+            // Search By Model Id
+            // Search By Color Id
+            // Search By Cab Style
+            // Search By WheelBase
+            // Search By Price Range
+
+            var styleReq = new searchStylesRequest1()
+            {
+                SearchStylesRequest = new SearchStylesRequest()
+                {
+                    accountInfo = accountInfo,
+                    searchRequest = new SearchServiceRequest()
+                    {
+                        criteriaArray = criteriaList.ToArray(),
+                        maxNumResults = 20,
+                    },
+                },
+            };
+            var styleRes = await client.searchStylesAsync(styleReq);
+            return styleRes.StyleArrayElement;
         }
     }
 }
