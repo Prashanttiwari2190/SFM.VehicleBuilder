@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IYear } from 'src/app/models/IYear';
 import { IDivision } from 'src/app/models/IDevision';
 import { IModel } from 'src/app/models/IModel';
+import { ICabStyle, IExteriorColor, IStyleOptions } from 'src/app/models/IStyleOptions';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -22,10 +23,15 @@ export class VehicleComponent implements OnInit{
   models: IModel[] = [];
   selectedModel: number;
 
+  styleOptions: IStyleOptions;
+  cabStyle: ICabStyle[] = [];
+  exteriorColor: IExteriorColor[] = [];
+  selectedExteriorColor: string;
   constructor(private service: VehicleService) {}
 
   ngOnInit() {
     this.loadYears();
+    this.loadStyleOptions();
   }
 
   loadYears() {
@@ -33,6 +39,7 @@ export class VehicleComponent implements OnInit{
       this.years = years;
     });
   }
+  
 
   onYearChange() {
     this.service.getMakes(this.selectedYear).subscribe(devisions => {
@@ -44,4 +51,16 @@ export class VehicleComponent implements OnInit{
     this.service.getModels(this.selectedYear, this.selectedMake).subscribe(models => {
       this.models =  models});
   }
+
+  loadStyleOptions() {
+    this.service.getStyleOptions().subscribe(styleOptions => {
+      this.cabStyle = styleOptions.cabStyle;
+      this.exteriorColor = styleOptions.exteriorColor;
+    });
+  }
+
+  onColorButtonClick(color: string) {
+    this.selectedExteriorColor = color;
+  }
 }
+
