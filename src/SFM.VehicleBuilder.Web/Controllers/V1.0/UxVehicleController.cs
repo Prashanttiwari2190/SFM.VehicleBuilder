@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using ChromeData;
 using DocumentFormat.OpenXml.Bibliography;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +16,9 @@ using SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetYearQuery;
 using SFM.VehicleBuilder.Domain.Correlation;
 using SFM.VehicleBuilder.Domain.Models;
+using SFM.VehicleBuilder.Domain.Models.ChromeData;
+using Division = SFM.VehicleBuilder.Domain.Models.Division;
+using Model = SFM.VehicleBuilder.Domain.Models.Model;
 
 namespace SFM.VehicleBuilder.Web.Controllers.V1
 {
@@ -149,6 +153,30 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
             // { WorkOrderNumber = workOrderNumber, }));*/
 
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        ///   Gets the StyleSearch list.
+        /// </summary>
+        /// <param name="styleFilterParameter"> division information.</param>
+        /// <returns>Returns a <see cref="string"/> containg the status of the work order.</returns>
+        [HttpPost("style-search")]
+        public async Task<ActionResult<IEnumerable<Styles>>> StyleSearch([FromBody] StyleFilterParameters styleFilterParameter)
+        {
+            var query = new UXGetStyleSearchQuery(correlationId)
+            {
+                Year = Convert.ToString(styleFilterParameter.Year),
+                DivisionId = Convert.ToString(styleFilterParameter.DivisionId),
+                ModelId = Convert.ToString(styleFilterParameter.ModelId),
+                ExteriorColorId = Convert.ToString(styleFilterParameter.ExteriorColorId),
+                CabStyleId = Convert.ToString(styleFilterParameter.CabStyleId),
+                MinWheelBase = Convert.ToString(styleFilterParameter.MinWheelBase * 0.9m),
+                MaxWheelBase = Convert.ToString(styleFilterParameter.MaxWheelBase * 1.1m),
+                MinPriceLevel = Convert.ToString(styleFilterParameter.MinPriceLevel),
+                MaxPriceLevel = Convert.ToString(styleFilterParameter.MaxPriceLevel),
+            };
+
+            return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));
         }
     }
 }

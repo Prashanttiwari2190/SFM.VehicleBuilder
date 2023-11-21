@@ -1,8 +1,8 @@
 ﻿using ChromeData;
+using SFM.VehicleBuilder.Domain.Models.ChromeData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SFM.VehicleBuilder.Domain.Models.ChromeData;
 
 namespace SFM.VehicleBuilder.Data.Services.ChromeData
 {
@@ -80,14 +80,40 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                     type = SearchCriterionType.String,
                     value = styleFilter.DivisionId,
                 },
-            };
+                new SearchCriterion() // Search By Model Id
+                {
+                    name = SearchTokenName.model,
+                    type = SearchCriterionType.String,
+                    value = styleFilter.ModelId,
+                },
+                new SearchCriterion() // Search By primaryExteriorColor
+                {
+                    name = SearchTokenName.primaryExteriorColor,
+                    type = SearchCriterionType.String,
+                    value = styleFilter.ExteriorColorId,
+                },
+                new SearchCriterion() // Search By CabStyleId
+                {
+                    name = SearchTokenName.styleId,
+                    type = SearchCriterionType.String,
+                    value = styleFilter.CabStyleId,
+                },
 
-            // TODO Add more filter: Apoorv
-            // Search By Model Id
-            // Search By Color Id
-            // Search By Cab Style
-            // Search By WheelBase
-            // Search By Price Range
+                new SearchCriterion() // Search By wheelbase
+                 {
+                    name = SearchTokenName.wheelbase,
+                    type = SearchCriterionType.TechnicalSpecificationRange,
+                    min = styleFilter.MinWheelBase,
+                    max = styleFilter.MaxWheelBase,
+                 },
+                new SearchCriterion() // Search By invoicePrice
+                 {
+                    name = SearchTokenName.msrp,
+                    type = SearchCriterionType.MoneyRange,
+                    min = styleFilter.MinPriceLevel,
+                    max = styleFilter.MaxPriceLevel,
+                 },
+            };
 
             var styleReq = new searchStylesRequest1()
             {

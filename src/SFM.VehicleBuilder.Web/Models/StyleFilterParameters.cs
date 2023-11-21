@@ -4,27 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SFM.VehicleBuilder.Domain.Models.ChromeData
+namespace SFM.VehicleBuilder.Web
 {
     /// <summary>
     ///   Style Filters to Search Style.
     /// </summary>
-    public class StyleFilter
+    public class StyleFilterParameters
     {
         /// <summary>
         ///   Gets or sets the Year.
         /// </summary>
-        public string Year { get; set; }
+        public int Year { get; set; }
 
         /// <summary>
         ///   Gets or sets the DivisonId.
         /// </summary>
-        public string DivisionId { get; set; }
+        public int DivisionId { get; set; }
 
         /// <summary>
         ///   Gets or sets the ModelId.
         /// </summary>
-        public string ModelId { get; set; }
+        public int ModelId { get; set; }
 
         /// <summary>
         ///   Gets or sets the ExteriorColorId.
@@ -34,26 +34,26 @@ namespace SFM.VehicleBuilder.Domain.Models.ChromeData
         /// <summary>
         ///   Gets or sets the CabStyleId.
         /// </summary>
-        public string CabStyleId { get; set; }
+        public int CabStyleId { get; set; }
 
         /// <summary>
         ///   Gets or sets the MinWheelBase.
         /// </summary>
-        public string MinWheelBase { get; set; }
+        public decimal MinWheelBase { get; set; }
 
         /// <summary>
         ///   Gets or sets the MaxWheelBase.
         /// </summary>
-        public string MaxWheelBase { get; set; }
+        public decimal MaxWheelBase { get; set; }
 
         /// <summary>
         ///   Gets or sets the MinPriceLevel.
         /// </summary>
-        public string MinPriceLevel { get; set; }
+        public decimal MinPriceLevel { get; set; }
 
         /// <summary>
         ///   Gets or sets the MaxPriceLevel.
         /// </summary>
-        public string MaxPriceLevel { get; set; }
+        public decimal MaxPriceLevel { get; set; }
     }
 }
