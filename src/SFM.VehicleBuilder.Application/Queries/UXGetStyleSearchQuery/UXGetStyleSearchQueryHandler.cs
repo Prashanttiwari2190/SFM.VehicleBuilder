@@ -4,8 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ChromeData;
 using MediatR;
 using SFM.VehicleBuilder.Data.Services.ChromeData;
+using SFM.VehicleBuilder.Domain.Models;
 using SFM.VehicleBuilder.Domain.Models.SearchStyle;
 using Style = SFM.VehicleBuilder.Domain.Models.SearchStyle.Styles;
 
@@ -61,6 +63,26 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
                              ConsumerFriendlyDrivetrain = i.consumerFriendlyDrivetrain,
                              ConsumerFriendlyBodyType = i.consumerFriendlyBodyType,
                              MarketingCopy = i.marketingCopy,
+                             Model = i.model == null ? null : new SearchStyleModel
+                             {
+                                 ModelYear = i.model.modelYear,
+                                 DivisionId = i.model.divisionId,
+                                 DivisionName = i.model.divisionName,
+                                 SubdivisionId = i.model.subdivisionId,
+                                 SubdivisionName = i.model.subdivisionName,
+                                 ModelId = i.model.modelId,
+                                 ModelName = i.model.modelName,
+                                 DataReleaseDate = i.model.dataReleaseDate,
+                                 InitialPriceDate = i.model.initialPriceDate,
+                                 DataEffectiveDate = i.model.dataEffectiveDate,
+                                 DataComment = i.model.dataComment,
+                             },
+                             BodyTypes = i.bodyTypes.Select(g => new SearchStyleBodyType
+                             {
+                                 BodyTypeId = g.bodyTypeId,
+                                 BodyTypeName = g.bodyTypeName,
+                                 Primary = g.primary,
+                             }).ToArray(),
                          }).ToList();
         }
     }

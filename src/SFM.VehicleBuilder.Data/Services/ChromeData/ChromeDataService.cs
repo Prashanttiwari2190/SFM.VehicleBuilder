@@ -86,7 +86,7 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                     type = SearchCriterionType.String,
                     value = styleFilter.ModelId,
                 },
-                new SearchCriterion() // Search By primaryExteriorColor
+                new SearchCriterion() // Search ByExteriorColor
                 {
                     name = SearchTokenName.primaryExteriorColor,
                     type = SearchCriterionType.String,
@@ -106,7 +106,7 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                     min = styleFilter.MinWheelBase,
                     max = styleFilter.MaxWheelBase,
                  },
-                new SearchCriterion() // Search By double
+                new SearchCriterion() // Search By msrp
                  {
                     name = SearchTokenName.msrp,
                     type = SearchCriterionType.MoneyRange,

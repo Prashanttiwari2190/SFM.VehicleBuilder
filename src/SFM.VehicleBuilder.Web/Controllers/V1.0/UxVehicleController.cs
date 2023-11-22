@@ -15,6 +15,7 @@ using SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetYearQuery;
 using SFM.VehicleBuilder.Domain.Correlation;
 using SFM.VehicleBuilder.Domain.Models;
+using SFM.VehicleBuilder.Domain.Models.SearchStyle;
 
 namespace SFM.VehicleBuilder.Web.Controllers.V1
 {

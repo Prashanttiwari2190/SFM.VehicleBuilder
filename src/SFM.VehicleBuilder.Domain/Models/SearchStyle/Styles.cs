@@ -13,6 +13,11 @@ namespace SFM.VehicleBuilder.Domain.Models.SearchStyle
     public class Styles
     {
         /// <summary>
+        ///   Gets or sets the Model class.
+        /// </summary>
+        public SearchStyleModel Model { get; set; }
+
+        /// <summary>
         ///   Gets or sets the styleIdField.
         /// </summary>
         public int StyleId { get; set; }
@@ -136,5 +141,20 @@ namespace SFM.VehicleBuilder.Domain.Models.SearchStyle
         ///   Gets or sets a value indicating whether gets or sets the MarketingCopy.
         /// </summary>
         public string MarketingCopy { get; set; }
+
+        /// <summary>
+        ///   Gets or sets a value indicating whether gets or sets the EnhancedBasePrices.
+        /// </summary>
+        public EnhancedPrice[] EnhancedBasePrices { get; set; }
+
+        /// <summary>
+        ///   Gets or sets a value indicating whether gets or sets the PriceStateField.
+        /// </summary>
+        public PriceState PriceStateField { get; set; }
+
+        /// <summary>
+        ///   Gets or sets a value indicating whether gets or sets the PriceStateField.
+        /// </summary>
+        public SearchStyleBodyType[] BodyTypes { get; set; }
     }
 }
