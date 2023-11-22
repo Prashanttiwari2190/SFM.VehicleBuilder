@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ChromeData;
-using SFM.VehicleBuilder.Domain.Models.ChromeData;
+using SFM.VehicleBuilder.Domain.Models.SearchStyle;
 
 namespace SFM.VehicleBuilder.Data.Services.ChromeData
 {

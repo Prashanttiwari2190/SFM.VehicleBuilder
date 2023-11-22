@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\ChromeData\" />
     <Folder Include="Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>

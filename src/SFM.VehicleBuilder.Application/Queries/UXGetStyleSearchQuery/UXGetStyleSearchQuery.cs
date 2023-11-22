@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using SFM.VehicleBuilder.Domain.Correlation;
-using SFM.VehicleBuilder.Domain.Models.ChromeData;
+using SFM.VehicleBuilder.Domain.Models.SearchStyle;
 using System.Collections.Generic;
 
 namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
