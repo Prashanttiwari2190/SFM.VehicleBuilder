@@ -1,5 +1,5 @@
 ﻿using ChromeData;
-using SFM.VehicleBuilder.Domain.Models.ChromeData;
+using SFM.VehicleBuilder.Domain.Models.SearchStyle;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -106,7 +106,7 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                     min = styleFilter.MinWheelBase,
                     max = styleFilter.MaxWheelBase,
                  },
-                new SearchCriterion() // Search By invoicePrice
+                new SearchCriterion() // Search By double
                  {
                     name = SearchTokenName.msrp,
                     type = SearchCriterionType.MoneyRange,

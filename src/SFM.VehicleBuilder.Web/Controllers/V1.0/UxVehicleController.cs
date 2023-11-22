@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using ChromeData;
 using DocumentFormat.OpenXml.Bibliography;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -16,9 +15,6 @@ using SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetYearQuery;
 using SFM.VehicleBuilder.Domain.Correlation;
 using SFM.VehicleBuilder.Domain.Models;
-using SFM.VehicleBuilder.Domain.Models.ChromeData;
-using Division = SFM.VehicleBuilder.Domain.Models.Division;
-using Model = SFM.VehicleBuilder.Domain.Models.Model;
 
 namespace SFM.VehicleBuilder.Web.Controllers.V1
 {

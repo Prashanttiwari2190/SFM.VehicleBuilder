@@ -4,11 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ChromeData;
 using MediatR;
 using SFM.VehicleBuilder.Data.Services.ChromeData;
-using SFM.VehicleBuilder.Domain.Models.ChromeData;
-using Style = SFM.VehicleBuilder.Domain.Models.ChromeData.Styles;
+using SFM.VehicleBuilder.Domain.Models.SearchStyle;
+using Style = SFM.VehicleBuilder.Domain.Models.SearchStyle.Styles;
 
 namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
 {
@@ -48,7 +47,7 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
                              BaseInvoice = i.baseInvoice,
                              StartingAtInvoice = i.startingAtInvoice,
                              StartingAtInvoiceSpecified = i.startingAtInvoiceSpecified,
-                             StartingAtMsrp = i.startingAtMsrp,
+                             StartingAtMsrpField = i.startingAtMsrp,
                              StartingAtMsrpSpecified = i.startingAtMsrpSpecified,
                              Destination = i.destination,
                              TrueBasePrice = i.trueBasePrice,
