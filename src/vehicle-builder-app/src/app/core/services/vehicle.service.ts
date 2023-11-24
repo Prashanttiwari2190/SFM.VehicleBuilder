@@ -7,6 +7,8 @@ import { IModel } from 'src/app/models/IModel';
 import { environment } from 'src/environments/environment';
 import { IDivision } from 'src/app/models/IDevision';
 import { IStyleOptions } from 'src/app/models/IStyleOptions';
+import { IStyleFilters } from 'src/app/models/IStyleFilters';
+import { IStyles } from 'src/app/models/IStyles';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +36,7 @@ export class VehicleService {
     return this.http.get<IStyleOptions>(environment.apiBaseUrl + `vehicle/style-options`);
   }
   
+  getStyleSearch(styleFilter: IStyleFilters): Observable<IStyles[]> {
+    return this.http.get<IStyles[]>(environment.apiBaseUrl + `style-search/${styleFilter}`);
+  }
 }
