@@ -1,5 +1,5 @@
 ﻿using ChromeData;
-using SFM.VehicleBuilder.Domain.Models.SearchStyle;
+using SFM.VehicleBuilder.Domain.Models.ChromeData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -73,46 +73,58 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                     type = SearchCriterionType.NumberRange,
                     min = styleFilter.Year,
                     max = styleFilter.Year,
+                    importance = SearchImportanceType.MustHave,
                 },
+
                 new SearchCriterion() // Search By Divison Id
-                {
+                 {
                     name = SearchTokenName.divisionId,
                     type = SearchCriterionType.String,
                     value = styleFilter.DivisionId,
-                },
+                    importance = SearchImportanceType.MustHave,
+                 },
+
                 new SearchCriterion() // Search By Model Id
-                {
+                 {
                     name = SearchTokenName.model,
                     type = SearchCriterionType.String,
                     value = styleFilter.ModelId,
-                },
-                new SearchCriterion() // Search ByExteriorColor
-                {
-                    name = SearchTokenName.primaryExteriorColor,
-                    type = SearchCriterionType.String,
-                    value = styleFilter.ExteriorColorId,
-                },
-                new SearchCriterion() // Search By CabStyleId
-                {
-                    name = SearchTokenName.styleId,
-                    type = SearchCriterionType.String,
-                    value = styleFilter.CabStyleId,
-                },
+                    importance = SearchImportanceType.MustHave,
+                 },
 
-                new SearchCriterion() // Search By wheelbase
-                 {
-                    name = SearchTokenName.wheelbase,
-                    type = SearchCriterionType.TechnicalSpecificationRange,
-                    min = styleFilter.MinWheelBase,
-                    max = styleFilter.MaxWheelBase,
-                 },
-                new SearchCriterion() // Search By msrp
-                 {
-                    name = SearchTokenName.msrp,
-                    type = SearchCriterionType.MoneyRange,
-                    min = styleFilter.MinPriceLevel,
-                    max = styleFilter.MaxPriceLevel,
-                 },
+                // new SearchCriterion() // Search ByExteriorColor
+                // {
+                //    name = SearchTokenName.primaryExteriorColor,
+                //    type = SearchCriterionType.String,
+                //    value = styleFilter.ExteriorColorId,
+                //    importance = SearchImportanceType.MustHave,
+                // },
+
+                // new SearchCriterion() // Search By CabStyleId
+                // {
+                //    name = SearchTokenName.bodyType,
+                //    type = SearchCriterionType.String,
+                //    value = styleFilter.CabStyleId,
+                //    importance = SearchImportanceType.MustHave,
+                // },
+
+                // new SearchCriterion() // Search By wheelbase
+                // {
+                //    name = SearchTokenName.wheelbase,
+                //    type = SearchCriterionType.TechnicalSpecificationRange,
+                //    min = styleFilter.MinWheelBase,
+                //    max = styleFilter.MaxWheelBase,
+                //    importance = SearchImportanceType.MustHave,
+                // },
+
+                // new SearchCriterion() // Search By msrp
+                // {
+                //    name = SearchTokenName.msrp,
+                //    type = SearchCriterionType.MoneyRange,
+                //    min = styleFilter.MinPriceLevel,
+                //    max = styleFilter.MaxPriceLevel,
+                //    importance = SearchImportanceType.MustHave,
+                // },
             };
 
             var styleReq = new searchStylesRequest1()
@@ -120,10 +132,11 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                 SearchStylesRequest = new SearchStylesRequest()
                 {
                     accountInfo = accountInfo,
+                    orderAvailability = OrderAvailability.Fleet,
                     searchRequest = new SearchServiceRequest()
                     {
                         criteriaArray = criteriaList.ToArray(),
-                        maxNumResults = 20,
+                        maxNumResults = 10,
                     },
                 },
             };

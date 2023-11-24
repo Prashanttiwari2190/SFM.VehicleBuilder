@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SFM.VehicleBuilder.Domain.Models.SearchStyle
+namespace SFM.VehicleBuilder.Domain.Models.ChromeData
 {
     /// <summary>
     ///   Style Filters to Search Style.
