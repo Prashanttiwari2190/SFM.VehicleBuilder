@@ -1,16 +1,17 @@
-﻿using System;
+﻿using MediatR;
+using SFM.VehicleBuilder.Domain.Correlation;
+using SFM.VehicleBuilder.Domain.Models.SearchStyle;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SFM.VehicleBuilder.Domain.Models.ChromeData
+namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
 {
-    /// <summary>
-    ///   Style Filters to Search Style.
-    /// </summary>
-    public class StyleFilter
+    public class UXGetStyleSearchQuery : QueryBase<IEnumerable<Styles>>
     {
+        public UXGetStyleSearchQuery(CorrelationId correlationId)
+            : base(correlationId)
+        {
+        }
+
         /// <summary>
         ///   Gets or sets the Year.
         /// </summary>

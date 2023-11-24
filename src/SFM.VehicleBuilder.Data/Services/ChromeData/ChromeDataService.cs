@@ -1,8 +1,8 @@
 ﻿using ChromeData;
+using SFM.VehicleBuilder.Domain.Models.ChromeData;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SFM.VehicleBuilder.Domain.Models.ChromeData;
 
 namespace SFM.VehicleBuilder.Data.Services.ChromeData
 {
@@ -73,31 +73,70 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                     type = SearchCriterionType.NumberRange,
                     min = styleFilter.Year,
                     max = styleFilter.Year,
+                    importance = SearchImportanceType.MustHave,
                 },
+
                 new SearchCriterion() // Search By Divison Id
-                {
+                 {
                     name = SearchTokenName.divisionId,
                     type = SearchCriterionType.String,
                     value = styleFilter.DivisionId,
-                },
-            };
+                    importance = SearchImportanceType.MustHave,
+                 },
 
-            // TODO Add more filter: Apoorv
-            // Search By Model Id
-            // Search By Color Id
-            // Search By Cab Style
-            // Search By WheelBase
-            // Search By Price Range
+                new SearchCriterion() // Search By Model Id
+                 {
+                    name = SearchTokenName.model,
+                    type = SearchCriterionType.String,
+                    value = styleFilter.ModelId,
+                    importance = SearchImportanceType.MustHave,
+                 },
+
+                // new SearchCriterion() // Search ByExteriorColor
+                // {
+                //    name = SearchTokenName.primaryExteriorColor,
+                //    type = SearchCriterionType.String,
+                //    value = styleFilter.ExteriorColorId,
+                //    importance = SearchImportanceType.MustHave,
+                // },
+
+                // new SearchCriterion() // Search By CabStyleId
+                // {
+                //    name = SearchTokenName.bodyType,
+                //    type = SearchCriterionType.String,
+                //    value = styleFilter.CabStyleId,
+                //    importance = SearchImportanceType.MustHave,
+                // },
+
+                // new SearchCriterion() // Search By wheelbase
+                // {
+                //    name = SearchTokenName.wheelbase,
+                //    type = SearchCriterionType.TechnicalSpecificationRange,
+                //    min = styleFilter.MinWheelBase,
+                //    max = styleFilter.MaxWheelBase,
+                //    importance = SearchImportanceType.MustHave,
+                // },
+
+                // new SearchCriterion() // Search By msrp
+                // {
+                //    name = SearchTokenName.msrp,
+                //    type = SearchCriterionType.MoneyRange,
+                //    min = styleFilter.MinPriceLevel,
+                //    max = styleFilter.MaxPriceLevel,
+                //    importance = SearchImportanceType.MustHave,
+                // },
+            };
 
             var styleReq = new searchStylesRequest1()
             {
                 SearchStylesRequest = new SearchStylesRequest()
                 {
                     accountInfo = accountInfo,
+                    orderAvailability = OrderAvailability.Fleet,
                     searchRequest = new SearchServiceRequest()
                     {
                         criteriaArray = criteriaList.ToArray(),
-                        maxNumResults = 20,
+                        maxNumResults = 10,
                     },
                 },
             };
