@@ -156,5 +156,10 @@ namespace SFM.VehicleBuilder.Domain.Models.SearchStyle
         ///   Gets or sets a value indicating whether gets or sets the PriceStateField.
         /// </summary>
         public SearchStyleBodyType[] BodyTypes { get; set; }
+
+        /// <summary>
+        ///   Gets or sets a value indicating whether gets or sets the configurationStateField.
+        /// </summary>
+        public ConfigurationState ConfigurationStateField { get; set; }
     }
 }

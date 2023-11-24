@@ -4,12 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ChromeData;
 using MediatR;
 using SFM.VehicleBuilder.Data.Services.ChromeData;
 using SFM.VehicleBuilder.Domain.Models;
+using SFM.VehicleBuilder.Domain.Models.ChromeData;
 using SFM.VehicleBuilder.Domain.Models.SearchStyle;
-using Style = SFM.VehicleBuilder.Domain.Models.SearchStyle.Styles;
 
 namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
 {
