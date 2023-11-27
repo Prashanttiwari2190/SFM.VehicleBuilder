@@ -25,11 +25,11 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a chrome data AvailableOptionsField.
         /// </summary>
-        public string AvailableOptionsField { get; set; }
+        public string[] AvailableOptionsField { get; set; }
 
         /// <summary>
         ///   Gets or sets a chrome data PreselectedOptionsField.
         /// </summary>
-        public string PreselectedOptionsField { get; set; }
+        public string[] PreselectedOptionsField { get; set; }
     }
 }

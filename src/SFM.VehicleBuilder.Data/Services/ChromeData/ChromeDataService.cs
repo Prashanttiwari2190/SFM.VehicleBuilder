@@ -86,45 +86,45 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
 
                 new SearchCriterion() // Search By Model Id
                  {
-                    name = SearchTokenName.model,
+                    name = SearchTokenName.modelId,
                     type = SearchCriterionType.String,
                     value = styleFilter.ModelId,
                     importance = SearchImportanceType.MustHave,
                  },
 
-                // new SearchCriterion() // Search ByExteriorColor
-                // {
-                //    name = SearchTokenName.primaryExteriorColor,
-                //    type = SearchCriterionType.String,
-                //    value = styleFilter.ExteriorColorId,
-                //    importance = SearchImportanceType.MustHave,
-                // },
+                new SearchCriterion() // Search ByExteriorColor
+                 {
+                    name = SearchTokenName.primaryExteriorColor,
+                    type = SearchCriterionType.String,
+                    value = styleFilter.ExteriorColorId,
+                    importance = SearchImportanceType.MustHave,
+                 },
 
-                // new SearchCriterion() // Search By CabStyleId
-                // {
-                //    name = SearchTokenName.bodyType,
-                //    type = SearchCriterionType.String,
-                //    value = styleFilter.CabStyleId,
-                //    importance = SearchImportanceType.MustHave,
-                // },
+                new SearchCriterion() // Search By CabStyleId
+                 {
+                    name = SearchTokenName.bodyType,
+                    type = SearchCriterionType.String,
+                    value = styleFilter.CabStyleId,
+                    importance = SearchImportanceType.MustHave,
+                 },
 
-                // new SearchCriterion() // Search By wheelbase
-                // {
-                //    name = SearchTokenName.wheelbase,
-                //    type = SearchCriterionType.TechnicalSpecificationRange,
-                //    min = styleFilter.MinWheelBase,
-                //    max = styleFilter.MaxWheelBase,
-                //    importance = SearchImportanceType.MustHave,
-                // },
+                new SearchCriterion() // Search By wheelbase
+                 {
+                    name = SearchTokenName.wheelbase,
+                    type = SearchCriterionType.TechnicalSpecificationRange,
+                    min = styleFilter.MinWheelBase,
+                    max = styleFilter.MaxWheelBase,
+                    importance = SearchImportanceType.MustHave,
+                 },
 
-                // new SearchCriterion() // Search By msrp
-                // {
-                //    name = SearchTokenName.msrp,
-                //    type = SearchCriterionType.MoneyRange,
-                //    min = styleFilter.MinPriceLevel,
-                //    max = styleFilter.MaxPriceLevel,
-                //    importance = SearchImportanceType.MustHave,
-                // },
+                new SearchCriterion() // Search By msrp
+                 {
+                    name = SearchTokenName.msrp,
+                    type = SearchCriterionType.MoneyRange,
+                    min = styleFilter.MinPriceLevel,
+                    max = styleFilter.MaxPriceLevel,
+                    importance = SearchImportanceType.MustHave,
+                 },
             };
 
             var styleReq = new searchStylesRequest1()
@@ -132,11 +132,10 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                 SearchStylesRequest = new SearchStylesRequest()
                 {
                     accountInfo = accountInfo,
-                    orderAvailability = OrderAvailability.Fleet,
                     searchRequest = new SearchServiceRequest()
                     {
                         criteriaArray = criteriaList.ToArray(),
-                        maxNumResults = 10,
+                        maxNumResults = 20,
                     },
                 },
             };

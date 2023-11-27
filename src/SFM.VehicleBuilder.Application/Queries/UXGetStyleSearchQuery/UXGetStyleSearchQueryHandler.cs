@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Bibliography;
+using Intuit.Ipp.Data;
+using Intuit.Ipp.OAuth2PlatformClient;
 using MediatR;
 using SFM.VehicleBuilder.Data.Services.ChromeData;
 using SFM.VehicleBuilder.Domain.Models;
@@ -23,18 +26,18 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
 
         public async Task<IEnumerable<Styles>> Handle(UXGetStyleSearchQuery request, CancellationToken cancellationToken)
         {
-            var styleFilter = new StyleFilter();
-            styleFilter.Year = request.Year;
-            styleFilter.ModelId = request.ModelId;
-            styleFilter.DivisionId = request.DivisionId;
-            styleFilter.MaxPriceLevel = request.MaxPriceLevel;
-            styleFilter.MinPriceLevel = request.MinPriceLevel;
-            styleFilter.MinWheelBase = request.MinWheelBase;
-            styleFilter.MaxWheelBase = request.MaxWheelBase;
-            styleFilter.CabStyleId = request.CabStyleId;
-            styleFilter.ExteriorColorId = request.ExteriorColorId;
+                var styleFilter = new StyleFilter();
+                styleFilter.Year = request.Year;
+                styleFilter.ModelId = request.ModelId;
+                styleFilter.DivisionId = request.DivisionId;
+                styleFilter.MaxPriceLevel = request.MaxPriceLevel;
+                styleFilter.MinPriceLevel = request.MinPriceLevel;
+                styleFilter.MinWheelBase = request.MinWheelBase;
+                styleFilter.MaxWheelBase = request.MaxWheelBase;
+                styleFilter.CabStyleId = request.CabStyleId;
+                styleFilter.ExteriorColorId = request.ExteriorColorId;
 
-            return (await chromeDataService.GetStyles(styleFilter)).Select(i =>
+                return (await chromeDataService.GetStyles(styleFilter)).Select(i =>
                          new Styles
                          {
                              StyleId = i.styleId,
@@ -62,6 +65,7 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
                              ConsumerFriendlyDrivetrain = i.consumerFriendlyDrivetrain,
                              ConsumerFriendlyBodyType = i.consumerFriendlyBodyType,
                              MarketingCopy = i.marketingCopy,
+                             PriceState = i.priceState.ToString(),
                              Model = i.model == null ? null : new SearchStyleModel
                              {
                                  ModelYear = i.model.modelYear,
@@ -76,12 +80,71 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
                                  DataEffectiveDate = i.model.dataEffectiveDate,
                                  DataComment = i.model.dataComment,
                              },
-                             BodyTypes = i.bodyTypes.Select(g => new SearchStyleBodyType
+                             EnhancedBasePrices = i.enhancedBasePrices == null ? null : i.enhancedBasePrices.Select(g => new EnhancedPrice
+                             {
+                                 Price = g.price,
+                                 Masked = g.masked,
+                                 PriceLevel = g.priceLevel == null ? null : new EnhancedPriceLevel
+                                 {
+                                     Id = g.priceLevel.id,
+                                     Description = g.priceLevel.description,
+                                     ShortDescription = g.priceLevel.shortDescription,
+                                 },
+
+                                 PriceState = g.priceState.ToString(),
+                             }).ToArray(),
+                             BodyTypes = i.bodyTypes == null ? null : i.bodyTypes.Select(g => new SearchStyleBodyType
                              {
                                  BodyTypeId = g.bodyTypeId,
                                  BodyTypeName = g.bodyTypeName,
                                  Primary = g.primary,
                              }).ToArray(),
+                             ConfigurationStateField = i.configurationState == null ? null : new ConfigurationState
+                             {
+                                 DataVersionField = i.configurationState.dataVersion,
+                                 StyleIdField = i.configurationState.styleId,
+                                 FullyConfiguredField = i.configurationState.fullyConfigured,
+                                 OrderAvailabilityField = i.configurationState.orderAvailability.ToString(),
+                                 SpecialEquipmentEnabledField = i.configurationState.specialEquipmentEnabled,
+                                 OptionOrderLogicDisabledField = i.configurationState.optionOrderLogicDisabled,
+                                 InitialPricingEnabledField = i.configurationState.initialPricingEnabled,
+                                 ChromeOptionCodeToggleStreamField = i.configurationState.chromeOptionCodeToggleStream,
+                                 SelectedChromeOptionCodesField = i.configurationState.selectedChromeOptionCodes,
+                                 SerializedValueField = i.configurationState.serializedValue,
+                                 ConditionPropertiesField = i.configurationState.conditionProperties == null ? null : i.configurationState.conditionProperties.Select(k => new ConditionProperty
+                                 {
+                                     NameField = k.name,
+                                     ValueField = k.name,
+                                 }).ToArray(),
+                                 ConstraintField = i.configurationState.constraint == null ? null : new ConfigurationConstraint
+                                 {
+                                     ConstraintIdField = i.configurationState.constraint.constraintId,
+                                     ConstraintNameField = i.configurationState.constraint.constraintName,
+                                     AvailableOptionsField = i.configurationState.constraint.availableOptions,
+                                     PreselectedOptionsField = i.configurationState.constraint.preselectedOptions,
+                                 },
+                                 UserDefinedTechSpecsField = i.configurationState.userDefinedTechSpecs == null ? null : new UserDefinedTechSpecs
+                                 {
+                                     RoadSurfaceField = i.configurationState.userDefinedTechSpecs.roadSurface.ToString(),
+                                     RoadGradeField = i.configurationState.userDefinedTechSpecs.roadGrade,
+                                     OccupantWeightField = i.configurationState.userDefinedTechSpecs.occupantWeight,
+                                     BodyLengthField = i.configurationState.userDefinedTechSpecs.bodyLength,
+                                     BodyFrontalAreaField = i.configurationState.userDefinedTechSpecs.bodyFrontalArea,
+                                     BodyWeightField = i.configurationState.userDefinedTechSpecs.bodyWeight,
+                                     CabToBodyDistanceField = i.configurationState.userDefinedTechSpecs.trailerWeight,
+                                     TrailerWeightField = i.configurationState.userDefinedTechSpecs.cabToBodyDistance,
+                                     CargoItemsField = i.configurationState.userDefinedTechSpecs.cargoItems == null ? null : i.configurationState.userDefinedTechSpecs.cargoItems.Select(k => new CargoItem
+                                     {
+                                         ItemNameField = k.itemName,
+                                         LiquidCargoField = k.liquidCargo,
+                                         CargoWeightField = k.cargoWeight,
+                                         DistanceFromRearAxleField = k.distanceFromRearAxle,
+                                     }).ToArray(),
+
+                                     BodyTypeField = i.configurationState.userDefinedTechSpecs.bodyType.ToString(),
+                                     MeasurementSystemField = i.configurationState.userDefinedTechSpecs.measurementSystem.ToString(),
+                                 },
+                             },
                          }).ToList();
         }
     }
