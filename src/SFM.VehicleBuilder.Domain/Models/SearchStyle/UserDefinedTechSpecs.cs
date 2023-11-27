@@ -15,7 +15,7 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a chrome data vehicle RoadSurfaceField.
         /// </summary>
-        public RoadSurface RoadSurfaceField { get; set; }
+        public string RoadSurfaceField { get; set; }
 
         /// <summary>
         ///   Gets or sets a chrome data vehicle RoadGradeField.
@@ -60,11 +60,11 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a chrome data bodyTypeField.
         /// </summary>
-        public UserDefinedBodyType BodyTypeField { get; set; }
+        public string BodyTypeField { get; set; }
 
         /// <summary>
         ///   Gets or sets a chrome data MeasurementSystemField.
         /// </summary>
-        public MeasurementSystem MeasurementSystemField { get; set; }
+        public string MeasurementSystemField { get; set; }
     }
 }
