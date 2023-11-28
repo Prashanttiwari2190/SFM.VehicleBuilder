@@ -25,7 +25,7 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets the PriceState.
         /// </summary>
-        public PriceState PriceState { get; set; }
+        public string PriceState { get; set; }
 
         /// <summary>
         ///   Gets or sets the PriceLevel.

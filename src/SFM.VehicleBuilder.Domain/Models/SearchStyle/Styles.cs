@@ -150,7 +150,7 @@ namespace SFM.VehicleBuilder.Domain.Models.SearchStyle
         /// <summary>
         ///   Gets or sets a value indicating whether gets or sets the PriceStateField.
         /// </summary>
-        public PriceState PriceStateField { get; set; }
+        public string PriceState { get; set; }
 
         /// <summary>
         ///   Gets or sets a value indicating whether gets or sets the PriceStateField.

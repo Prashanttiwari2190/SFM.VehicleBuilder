@@ -15,7 +15,7 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a chrome data DataVersionField.
         /// </summary>
-        public DateTime DataVersionField { get; set; }
+        public DateTime? DataVersionField { get; set; }
 
         /// <summary>
         ///   Gets or sets a chrome data StyleIdField.
@@ -30,7 +30,7 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a chrome data vehicle OrderAvailabilityField.
         /// </summary>
-        public OrderAvailability OrderAvailabilityField { get; set; }
+        public string OrderAvailabilityField { get; set; }
 
         /// <summary>
         ///   Gets or sets a value indicating whether a chrome data vehicle SpecialEquipmentEnabledField.
