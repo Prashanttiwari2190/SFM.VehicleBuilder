@@ -1,11 +1,11 @@
 export interface IStyleFilters{
-    year: string,
-    divisionId: string,
-    modelId: string,
+    year: number,
+    divisionId: number,
+    modelId: number,
     exteriorColorId: string,
-    cabStyleId : string,
-    minWheelBase: string,
-    maxWheelBase: string,
-    minPriceLevel : string,
-    maxPriceLevel : string
+    cabStyleId : number,
+    minWheelBase: number,
+    maxWheelBase: number,
+    minPriceLevel : number,
+    maxPriceLevel : number
 }

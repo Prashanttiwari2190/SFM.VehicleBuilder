@@ -12,22 +12,22 @@
         </div>
         <div class="col-sm-4">
             <!-- <div *ngIf="selectedYear"> -->
-                <label for="make" class="form-label">Select Make:</label>
-                <select id="make" class="form-select" [(ngModel)]="selectedMake" (change)="onMakeChange()">
-                    <option value="0" selected>Select Make</option>
-                    <option *ngFor="let make of devisions" [value]="make.divisionId">{{ make.divisionName }}
-                    </option>
-                </select>
+            <label for="make" class="form-label">Select Make:</label>
+            <select id="make" class="form-select" [(ngModel)]="selectedMake" (change)="onMakeChange()">
+                <option value="0" selected>Select Make</option>
+                <option *ngFor="let make of devisions" [value]="make.divisionId">{{ make.divisionName }}
+                </option>
+            </select>
             <!-- </div> -->
 
         </div>
         <div class="col-sm-4">
             <!-- <div *ngIf="selectedMake"> -->
-                <label for="model" class="form-label">Select Model:</label>
-                <select id="model" class="form-select" [(ngModel)]="selectedModel">
-                    <option value="0" selected>Select Model</option>
-                    <option *ngFor="let model of models" [value]="model.modelId">{{ model.modelName }}</option>
-                </select>
+            <label for="model" class="form-label">Select Model:</label>
+            <select id="model" class="form-select" [(ngModel)]="selectedModel">
+                <option value="0" selected>Select Model</option>
+                <option *ngFor="let model of models" [value]="model.modelId">{{ model.modelName }}</option>
+            </select>
             <!-- </div> -->
 
         </div>
@@ -35,75 +35,85 @@
     <div class="row  mb-3">
 
 
-    <div class="col-sm-6">
-        <div class="row  mb-3">
-            <div >
+        <div class="col-sm-6">
+            <div class="row  mb-3">
                 <div>
-                    <label for="cab-style" class="form-label">Select Cab Style:</label>
-                    <select id="cab-style" class="form-select">
-                        <option value="0" selected>Select Cab Style</option>
-                        <option *ngFor="let cabOptions of cabStyle" [value]="cabOptions.cabStyleId">
-                            {{cabOptions.cabStyleName}}</option>
-                    </select>
+                    <div>
+                        <label for="cab-style" class="form-label">Select Cab Style:</label>
+                        <select id="cab-style" class="form-select" [(ngModel)]="selectedCabStyle">
+                            <option value="0" selected>Select Cab Style</option>
+                            <option *ngFor="let cabOptions of cabStyle" [value]="cabOptions.cabStyleId">
+                                {{cabOptions.cabStyleName}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row  mb-3">
-            <label  class="form-label">Wheelbase(inches)</label>
-            <div class="col-sm-6">
-                <div>
-                    <label for="minWheelBase" class="form-label">Minimum:</label>
-                    <input type="text" appOnlyNumbers  id="minWheelBase" class="form-control" placeholder="Enter Wheelbase"  [(ngModel)]="minWheelBase">
+            <div class="row  mb-3">
+                <label class="form-label">Wheelbase(inches)</label>
+                <div class="col-sm-6">
+                    <div>
+                        <label for="minWheelBase" class="form-label">Minimum:</label>
+                        <input type="text" appOnlyNumbers id="minWheelBase" class="form-control"
+                            placeholder="Enter Wheelbase" [(ngModel)]="minWheelBase">
+                    </div>
                 </div>
+                <div class="col-sm-6">
+                    <div>
+                        <label for="maxWheelBase" class="form-label">Maximum:</label>
+                        <input type="text" id="maxWheelBase" class="form-control" placeholder="Enter Wheelbase"
+                            [(ngModel)]="maxWheelBase">
+                    </div>
+                </div>
+
+
             </div>
-            <div class="col-sm-6">
-                <div>
-                    <label for="maxWheelBase" class="form-label">Maximum:</label>
-                    <input type="text" id="maxWheelBase" class="form-control" placeholder="Enter Wheelbase"  [(ngModel)]="maxWheelBase">
+
+            <div class="row  mb-3">
+                <label class="form-label">Price Level(msrp)</label>
+                <div class="col-sm-6">
+                    <div>
+                        <label for="minPriceLevel" class="form-label">Minimum</label>
+                        <input type="text" class="form-control" id="minPriceLevel" placeholder="Enter Price Level"
+                            [(ngModel)]="minPriceLevel">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div>
+                        <label for="maxPriceLevel" class="form-label">Maximum</label>
+                        <input type="text" class="form-control" id="maxPriceLevel" placeholder="Enter Price Level"
+                            [(ngModel)]="maxPriceLevel">
+                    </div>
                 </div>
             </div>
 
-
         </div>
-
-        <div class="row  mb-3">
-            <label  class="form-label">Price Level(msrp)</label>
-            <div class="col-sm-6">
-                <div>
-                    <label for="minPriceLevel" class="form-label">Minimum</label>
-                    <input type="text" class="form-control" id="minPriceLevel" placeholder="Enter Price Level"  [(ngModel)]="minPriceLevel">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div>
-                    <label for="maxPriceLevel" class="form-label">Maximum</label>
-                    <input type="text" class="form-control" id="maxPriceLevel" placeholder="Enter Price Level"  [(ngModel)]="maxPriceLevel">
-                </div>
+        <div class="col-sm-6">
+            <div>
+                <label for="cab-style" class="form-label">Exterior: <span id="exteriorColor">{{ selectedExteriorColor
+                        }}</span></label>
+                <br />
+                <button *ngFor="let item of exteriorColor" class="btn btn-vc-exterior"
+                    (click)="onColorButtonClick(item.colorName)" value="item.colorName"
+                    [style.background-color]="item.colorCode"></button>
             </div>
         </div>
-
-    </div>
-    <div class="col-sm-6">
-        <div>
-            <label for="cab-style" class="form-label">Exterior: <span id="exteriorColor">{{ selectedExteriorColor
-                    }}</span></label>
-            <br />
-            <button *ngFor="let item of exteriorColor" class="btn btn-vc-exterior"
-                (click)="onColorButtonClick(item.colorName)" value="item.colorName"
-                [style.background-color]="item.colorCode"></button>
-        </div>
-    </div>
     </div>
     <div class="row  mb-3">
-        <div >
-        <button type="button" class="btn btn-success me-2 float-end col-sm-3 " (click)="loadStyleSearch()">
-            <span *ngIf="!isLoading">
-                <i data-feather="check" appFeatherIcon></i> Search
-            </span>
-            <span *ngIf="isLoading">
-                <i class="spin" data-feather="loader" appFeatherIcon></i>
-            </span>
-        </button>
+        <div>
+            <button type="button" class="btn btn-success me-2 float-end col-sm-3 " (click)="loadStyleSearch()">
+                Search
+                <!-- <span *ngIf="!isLoading">
+                    <i data-feather="check" appFeatherIcon></i> Search
+                </span>
+                <span *ngIf="isLoading">
+                    <i class="spin" data-feather="loader" appFeatherIcon></i>
+                </span> -->
+            </button>
+        </div>
     </div>
-    </div>
+</div>
+
+
+<div *ngIf='styles'>
+    <app-vehicle-search-table  [dataSourceStyleSearch]="styles"></app-vehicle-search-table>
 </div>

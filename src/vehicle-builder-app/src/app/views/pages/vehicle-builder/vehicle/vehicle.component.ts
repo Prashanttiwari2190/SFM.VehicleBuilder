@@ -7,7 +7,7 @@ import { IModel } from 'src/app/models/IModel';
 import { ICabStyle, IExteriorColor, IStyleOptions } from 'src/app/models/IStyleOptions';
 import { SubSink } from 'subsink';
 import { IStyleFilters } from 'src/app/models/IStyleFilters';
-import { IStyles } from 'src/app/models/IStyles';
+import { IStyles } from 'src/app/models/SearchStyle/IStyles';
 
 @Component({
   selector: 'app-vehicle',
@@ -30,7 +30,7 @@ export class VehicleComponent implements OnInit{
   cabStyle: ICabStyle[] = [];
   exteriorColor: IExteriorColor[] = [];
   selectedExteriorColor: string;
-  selectedCabStyle: string;
+  selectedCabStyle: number;
   minWheelBase: number;
   maxWheelBase: number;
   minPriceLevel: number;
@@ -77,19 +77,23 @@ export class VehicleComponent implements OnInit{
 
   loadStyleSearch(){
     this.isLoading = true;
-    this.styleFilter.year = this.selectedYear.toString();
-    this.styleFilter.divisionId = this.selectedMake.toString();
-    this.styleFilter.modelId = this.selectedModel.toString();
-    this.styleFilter.exteriorColorId = this.selectedExteriorColor.toString();
-    this.styleFilter.cabStyleId = this.selectedCabStyle.toString();
-    this.styleFilter.minWheelBase= this.minWheelBase.toString();
-    this.styleFilter.maxWheelBase= this.maxWheelBase.toString();
-    this.styleFilter.minPriceLevel = this.minPriceLevel.toString();
-    this.styleFilter.maxPriceLevel = this.maxPriceLevel.toString();
-    this.service.getStyleSearch(this.styleFilter).subscribe(styles => {
+    this.styleFilter =        {
+    year : this.selectedYear,
+    divisionId : this.selectedMake,
+    modelId : this.selectedModel,
+    exteriorColorId : "BLACK",//this.selectedExteriorColor,
+    cabStyleId : this.selectedCabStyle,
+    minWheelBase: this.minWheelBase,
+    maxWheelBase: this.maxWheelBase,
+    minPriceLevel : this.minPriceLevel,
+    maxPriceLevel : this.maxPriceLevel
+    };
+    this.service.getStyleSearch(this.styleFilter).subscribe(styles  => {
       this.styles = styles;
-      this.isLoading = false;
-    })
+      console.log(this.styles);
+    });
+    
+    
   }
 }
 
