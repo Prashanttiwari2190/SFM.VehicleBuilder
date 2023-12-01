@@ -41,11 +41,8 @@ namespace SFM.VehicleBuilder.Web
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            /*
             app.UseAuthentication();
             app.UseAuthorization();
-            */
-
             app.UseApiVersioningMiddleware();
             app.UseEndpoints(endpoints =>
             {

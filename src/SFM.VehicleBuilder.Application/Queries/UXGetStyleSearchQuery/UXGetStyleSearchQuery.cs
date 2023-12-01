@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
 {
-    public class UXGetStyleSearchQuery : QueryBase<IEnumerable<Styles>>
+    public class UXGetStyleSearchQuery : SecureQueryBase<IEnumerable<Styles>>
     {
         public UXGetStyleSearchQuery(CorrelationId correlationId)
             : base(correlationId)

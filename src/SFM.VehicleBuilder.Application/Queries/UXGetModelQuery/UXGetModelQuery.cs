@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SFM.VehicleBuilder.Application.Queries.UXGetModelQuery
 {
-    public class UXGetModelQuery : QueryBase<IEnumerable<Model>>
+    public class UXGetModelQuery : SecureQueryBase<IEnumerable<Model>>
     {
         public UXGetModelQuery(CorrelationId correlationId)
             : base(correlationId)

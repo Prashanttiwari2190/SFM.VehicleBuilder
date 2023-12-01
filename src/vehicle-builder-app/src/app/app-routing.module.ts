@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@auth0/auth0-angular';
 import { BaseComponent } from './views/layout/base/base.component';
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/vehicle-builder/vehicle-builder.module').then(m => m.VehicleBuilderModule)
       },
       { path: '', redirectTo: 'vehicle-builder', pathMatch: 'full' }, 
-    ]
+    ],
+    canActivate: [AuthGuard]
   }
 ];
 
