@@ -65,5 +65,9 @@ export class VehicleSearchTableComponent implements OnChanges  {
     this.cd.detectChanges();
     this.expandedElement = element;
   }
+
+  formatDate(date: string) {
+    return new Date(date).toLocaleDateString();
+  }
   
 }
