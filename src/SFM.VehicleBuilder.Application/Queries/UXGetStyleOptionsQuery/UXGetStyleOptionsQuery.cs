@@ -4,7 +4,7 @@ using SFM.VehicleBuilder.Domain.Models;
 
 namespace SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery
 {
-    public class UXGetStyleOptionsQuery : QueryBase<StyleOptions>
+    public class UXGetStyleOptionsQuery : SecureQueryBase<StyleOptions>
     {
         public UXGetStyleOptionsQuery(CorrelationId correlationId)
             : base(correlationId)

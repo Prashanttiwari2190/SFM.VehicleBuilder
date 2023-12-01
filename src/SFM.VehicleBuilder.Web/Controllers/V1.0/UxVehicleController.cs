@@ -59,6 +59,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
         [HttpGet("make/{year}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Division>>> GetMake([FromRoute] int year)
         {
             var query = new UXGetMakeQuery(correlationId)
@@ -78,6 +79,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
         [HttpGet("year")]
+        [Authorize]
         public async Task<ActionResult<int[]>> GetYear()
          => await this.Execute(logger, () => mediator.Send(new UXGetYearQuery(correlationId), CancellationToken.None));
 
@@ -92,6 +94,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
         [HttpGet("{year}/model/{division}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Model>>> GetModel([FromRoute] int year, [FromRoute] int division)
         {
             var query = new UXGetModelQuery(correlationId)
@@ -112,6 +115,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
         [HttpGet("style-options")]
+        [Authorize]
         public async Task<ActionResult<StyleOptions>> CabStyleOption() => await this.Execute(logger, () => mediator.Send(new UXGetStyleOptionsQuery(correlationId), CancellationToken.None));
 
         /// <summary>
@@ -123,6 +127,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
         [HttpGet("")]
+        [Authorize]
         public async Task<ActionResult<string>> GetWheelbase()
         {
             await this.Execute(logger, () => mediator.Send(new SampleQuery(new CorrelationId(Guid.NewGuid()))));
@@ -142,6 +147,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 404)]
         [ProducesResponseType(typeof(string), 500)]
         [HttpGet("")]
+        [Authorize]
         public async Task<ActionResult<string>> GetPriceLevel()
         {
             await this.Execute(logger, () => mediator.Send(new SampleQuery(new CorrelationId(Guid.NewGuid()))));
@@ -158,6 +164,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         /// <param name="styleFilterParameter"> division information.</param>
         /// <returns>Returns a <see cref="string"/> containg the status of the work order.</returns>
         [HttpPost("style-search")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Styles>>> StyleSearch([FromBody] StyleFilterParameters styleFilterParameter)
         {
             var query = new UXGetStyleSearchQuery(correlationId)

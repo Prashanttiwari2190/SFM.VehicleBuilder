@@ -78,7 +78,6 @@ export class VehicleComponent implements OnInit {
 
   loadStyleSearch() {
     this.isLoading = true;
-    debugger;
     this.styleFilter = {
       year: this.selectedYear,
       divisionId: this.selectedMake,
