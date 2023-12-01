@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VehicleService  } from 'src/app/core/services/vehicle.service';
+import { VehicleService } from 'src/app/core/services/vehicle.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IYear } from 'src/app/models/IYear';
 import { IDivision } from 'src/app/models/IDevision';
@@ -7,14 +7,14 @@ import { IModel } from 'src/app/models/IModel';
 import { ICabStyle, IExteriorColor, IStyleOptions } from 'src/app/models/IStyleOptions';
 import { SubSink } from 'subsink';
 import { IStyleFilters } from 'src/app/models/IStyleFilters';
-import { IStyles } from 'src/app/models/IStyles';
+import { IStyles } from 'src/app/models/SearchStyle/IStyles';
 
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
   styleUrls: ['./vehicle.component.scss']
 })
-export class VehicleComponent implements OnInit{
+export class VehicleComponent implements OnInit {
   subs = new SubSink();
   isLoading = false;
   years: IYear[] = [];
@@ -30,7 +30,7 @@ export class VehicleComponent implements OnInit{
   cabStyle: ICabStyle[] = [];
   exteriorColor: IExteriorColor[] = [];
   selectedExteriorColor: string;
-  selectedCabStyle: string;
+  selectedCabStyle: number;
   minWheelBase: number;
   maxWheelBase: number;
   minPriceLevel: number;
@@ -39,7 +39,7 @@ export class VehicleComponent implements OnInit{
   styleFilter: IStyleFilters;
   styles: IStyles[] = [];
 
-  constructor(private service: VehicleService) {}
+  constructor(private service: VehicleService) { }
 
   ngOnInit() {
     this.loadYears();
@@ -51,7 +51,7 @@ export class VehicleComponent implements OnInit{
       this.years = years;
     });
   }
-  
+
 
   onYearChange() {
     this.service.getMakes(this.selectedYear).subscribe(devisions => {
@@ -61,7 +61,8 @@ export class VehicleComponent implements OnInit{
 
   onMakeChange() {
     this.service.getModels(this.selectedYear, this.selectedMake).subscribe(models => {
-      this.models =  models});
+      this.models = models
+    });
   }
 
   loadStyleOptions() {
@@ -75,21 +76,26 @@ export class VehicleComponent implements OnInit{
     this.selectedExteriorColor = color;
   }
 
-  loadStyleSearch(){
+  loadStyleSearch() {
     this.isLoading = true;
-    this.styleFilter.year = this.selectedYear.toString();
-    this.styleFilter.divisionId = this.selectedMake.toString();
-    this.styleFilter.modelId = this.selectedModel.toString();
-    this.styleFilter.exteriorColorId = this.selectedExteriorColor.toString();
-    this.styleFilter.cabStyleId = this.selectedCabStyle.toString();
-    this.styleFilter.minWheelBase= this.minWheelBase.toString();
-    this.styleFilter.maxWheelBase= this.maxWheelBase.toString();
-    this.styleFilter.minPriceLevel = this.minPriceLevel.toString();
-    this.styleFilter.maxPriceLevel = this.maxPriceLevel.toString();
+    this.styleFilter = {
+      year: this.selectedYear,
+      divisionId: this.selectedMake,
+      modelId: this.selectedModel,
+      exteriorColorId: this.selectedExteriorColor,
+      cabStyleId: this.selectedCabStyle,
+      minWheelBase: this.minWheelBase,
+      maxWheelBase: this.maxWheelBase,
+      minPriceLevel: this.minPriceLevel,
+      maxPriceLevel: this.maxPriceLevel
+    };
     this.service.getStyleSearch(this.styleFilter).subscribe(styles => {
       this.styles = styles;
       this.isLoading = false;
-    })
+      console.log(this.styles);
+    });
+
+
   }
 }
 

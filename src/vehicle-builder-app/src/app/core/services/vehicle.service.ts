@@ -1,13 +1,15 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { IYear } from 'src/app/models/IYear';
 import { IModel } from 'src/app/models/IModel';
 import { IDivision } from 'src/app/models/IDevision';
 import { IStyleOptions } from 'src/app/models/IStyleOptions';
 import { IStyleFilters } from 'src/app/models/IStyleFilters';
-import { IStyles } from 'src/app/models/IStyles';
+import { IStyles } from 'src/app/models/SearchStyle/IStyles';
+import { ICON_REGISTRY_PROVIDER } from '@angular/material/icon';
+import { style } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +38,14 @@ export class VehicleService {
   }
   
   getStyleSearch(styleFilter: IStyleFilters): Observable<IStyles[]> {
-    return this.http.get<IStyles[]>(`style-search/${styleFilter}`);
-  }
-}
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+  
+    return this.http.post<IStyles[]>('vehicle/style-search', styleFilter, { headers })
+      .pipe(
+        map(styleRsults => {
+          styleRsults
+          return styleRsults;})
+      );
+  }}

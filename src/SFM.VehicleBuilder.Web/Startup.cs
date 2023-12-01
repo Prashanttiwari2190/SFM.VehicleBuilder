@@ -25,6 +25,7 @@ namespace SFM.VehicleBuilder.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDirectoryBrowser();
             }
             else
             {
@@ -37,6 +38,7 @@ namespace SFM.VehicleBuilder.Web
                 // app.UseHttpsRedirection();
             }
 
+            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -55,6 +57,16 @@ namespace SFM.VehicleBuilder.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "Default",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                    });
+            });
+
             services.AddSingleton(provider => Configuration);
             services.AddHttpClient();
             services.AddHttpContextAccessor();
@@ -69,7 +81,6 @@ namespace SFM.VehicleBuilder.Web
                  .AddApiVersioning()
                  .AddScoped(provider => new CorrelationId())
                  ;
-            services.AddCors(options => { options.AddPolicy("Default", policy => { policy.WithOrigins("http://localhost:4200"); }); });
         }
     }
 }
