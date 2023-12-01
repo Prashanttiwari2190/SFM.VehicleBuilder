@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VehicleService  } from 'src/app/core/services/vehicle.service';
+import { VehicleService } from 'src/app/core/services/vehicle.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IYear } from 'src/app/models/IYear';
 import { IDivision } from 'src/app/models/IDevision';
@@ -14,7 +14,7 @@ import { IStyles } from 'src/app/models/SearchStyle/IStyles';
   templateUrl: './vehicle.component.html',
   styleUrls: ['./vehicle.component.scss']
 })
-export class VehicleComponent implements OnInit{
+export class VehicleComponent implements OnInit {
   subs = new SubSink();
   isLoading = false;
   years: IYear[] = [];
@@ -39,7 +39,7 @@ export class VehicleComponent implements OnInit{
   styleFilter: IStyleFilters;
   styles: IStyles[] = [];
 
-  constructor(private service: VehicleService) {}
+  constructor(private service: VehicleService) { }
 
   ngOnInit() {
     this.loadYears();
@@ -51,7 +51,7 @@ export class VehicleComponent implements OnInit{
       this.years = years;
     });
   }
-  
+
 
   onYearChange() {
     this.service.getMakes(this.selectedYear).subscribe(devisions => {
@@ -61,7 +61,8 @@ export class VehicleComponent implements OnInit{
 
   onMakeChange() {
     this.service.getModels(this.selectedYear, this.selectedMake).subscribe(models => {
-      this.models =  models});
+      this.models = models
+    });
   }
 
   loadStyleOptions() {
@@ -75,27 +76,27 @@ export class VehicleComponent implements OnInit{
     this.selectedExteriorColor = color;
   }
 
-  loadStyleSearch(){
+  loadStyleSearch() {
     this.isLoading = true;
     debugger;
-    this.styleFilter =        {
-    year : this.selectedYear,
-    divisionId : this.selectedMake,
-    modelId : this.selectedModel,
-    exteriorColorId : this.selectedExteriorColor,
-    cabStyleId : this.selectedCabStyle,
-    minWheelBase: this.minWheelBase,
-    maxWheelBase: this.maxWheelBase,
-    minPriceLevel : this.minPriceLevel,
-    maxPriceLevel : this.maxPriceLevel
+    this.styleFilter = {
+      year: this.selectedYear,
+      divisionId: this.selectedMake,
+      modelId: this.selectedModel,
+      exteriorColorId: this.selectedExteriorColor,
+      cabStyleId: this.selectedCabStyle,
+      minWheelBase: this.minWheelBase,
+      maxWheelBase: this.maxWheelBase,
+      minPriceLevel: this.minPriceLevel,
+      maxPriceLevel: this.maxPriceLevel
     };
-    this.service.getStyleSearch(this.styleFilter).subscribe(styles  => {
+    this.service.getStyleSearch(this.styleFilter).subscribe(styles => {
       this.styles = styles;
       this.isLoading = false;
       console.log(this.styles);
     });
-    
-    
+
+
   }
 }
 
