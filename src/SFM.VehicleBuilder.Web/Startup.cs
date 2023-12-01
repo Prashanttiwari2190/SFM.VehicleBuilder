@@ -25,7 +25,8 @@ namespace SFM.VehicleBuilder.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDirectoryBrowser();
+
+                // app.UseDirectoryBrowser();
             }
             else
             {
@@ -38,7 +39,6 @@ namespace SFM.VehicleBuilder.Web
                 // app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseDefaultFiles();
             app.UseStaticFiles();

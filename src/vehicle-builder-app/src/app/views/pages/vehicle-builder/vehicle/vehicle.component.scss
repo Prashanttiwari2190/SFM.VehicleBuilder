@@ -5,3 +5,9 @@
     border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: var(--bs-border-radius);
 }
+
+.btn-mat-icon {
+    font-size: 1.25rem;
+    margin-bottom: -4px;
+    line-height: unset;
+}

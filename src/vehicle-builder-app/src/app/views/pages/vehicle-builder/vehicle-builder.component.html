@@ -1,63 +1,92 @@
 <mat-vertical-stepper [linear]="true" #stepper>
   <mat-step label="Vehicle" completed="true">
-    <div class="row mb-3">
-      <div class="col-12 col-md-8">
-        Vehicle Selection
-      </div>
-    </div>
-
     <app-vehicle></app-vehicle>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div class="float-right">
+      <button class="btn-text-blue" mat-button matStepperNext>
+        Next <mat-icon class="btn-mat-icon" iconPositionEnd>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
   <mat-step label="Factory" completed="false">
-    Factory Setup
 
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div class="float-right">
+      <button mat-button matStepperPrevious>
+        <mat-icon class="btn-mat-icon">chevron_left</mat-icon>Back
+      </button>
+      <button class="btn-text-blue" mat-button matStepperNext>
+        Next <mat-icon class="btn-mat-icon" iconPositionEnd>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
   <mat-step label="Compare" completed="false">
 
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div class="float-right">
+      <button mat-button matStepperPrevious>
+        <mat-icon class="btn-mat-icon">chevron_left</mat-icon>Back
+      </button>
+      <button class="btn-text-blue" mat-button matStepperNext>
+        Next <mat-icon class="btn-mat-icon" iconPositionEnd>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
 
   <mat-step label="Uplifting" completed="false">
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div class="float-right">
+      <button mat-button matStepperPrevious>
+        <mat-icon class="btn-mat-icon">chevron_left</mat-icon>Back
+      </button>
+      <button class="btn-text-blue" mat-button matStepperNext>
+        Next <mat-icon class="btn-mat-icon" iconPositionEnd>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
   <mat-step label="Price" completed="false">
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div class="float-right">
+      <button mat-button matStepperPrevious>
+        <mat-icon class="btn-mat-icon">chevron_left</mat-icon>Back
+      </button>
+      <button class="btn-text-blue" mat-button matStepperNext>
+        Next <mat-icon class="btn-mat-icon" iconPositionEnd>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
   <mat-step label="Financing" completed="false">
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div class="float-right">
+      <button mat-button matStepperPrevious>
+        <mat-icon class="btn-mat-icon">chevron_left</mat-icon>Back
+      </button>
+      <button class="btn-text-blue" mat-button matStepperNext>
+        Next <mat-icon class="btn-mat-icon" iconPositionEnd>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
   <mat-step label="Summary" completed="false">
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div class="float-right">
+      <button mat-button matStepperPrevious>
+        <mat-icon class="btn-mat-icon">chevron_left</mat-icon>Back
+      </button>
+      <button class="btn-text-blue" mat-button matStepperNext>
+        Next <mat-icon class="btn-mat-icon" iconPositionEnd>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Finish</ng-template>
     Generate Report
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+    <div class="float-right">
+      <button mat-button matStepperPrevious>
+        <mat-icon class="btn-mat-icon">chevron_left</mat-icon>Back
+      </button>
+      <button class="btn-text-blue" mat-button matStepperNext>
+        Next <mat-icon class="btn-mat-icon" iconPositionEnd>chevron_right</mat-icon>
+      </button>
+    </div>
+    <div class="float-right">
+      <button mat-button matStepperPrevious>
+        <mat-icon class="btn-mat-icon">chevron_left</mat-icon>Back
+      </button>
+      <button mat-button class="text-danger" (click)="stepper.reset()">Reset
+        <mat-icon class="btn-mat-icon" iconPositionEnd>settings_backup_restore</mat-icon></button>
     </div>
   </mat-step>
 </mat-vertical-stepper>
