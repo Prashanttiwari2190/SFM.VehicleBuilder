@@ -77,11 +77,12 @@ export class VehicleComponent implements OnInit{
 
   loadStyleSearch(){
     this.isLoading = true;
+    debugger;
     this.styleFilter =        {
     year : this.selectedYear,
     divisionId : this.selectedMake,
     modelId : this.selectedModel,
-    exteriorColorId : "BLACK",//this.selectedExteriorColor,
+    exteriorColorId : this.selectedExteriorColor,
     cabStyleId : this.selectedCabStyle,
     minWheelBase: this.minWheelBase,
     maxWheelBase: this.maxWheelBase,
@@ -90,6 +91,7 @@ export class VehicleComponent implements OnInit{
     };
     this.service.getStyleSearch(this.styleFilter).subscribe(styles  => {
       this.styles = styles;
+      this.isLoading = false;
       console.log(this.styles);
     });
     

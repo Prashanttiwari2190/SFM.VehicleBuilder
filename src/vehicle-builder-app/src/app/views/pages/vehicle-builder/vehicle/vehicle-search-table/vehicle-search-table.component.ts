@@ -6,7 +6,7 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { IStyles } from 'src/app/models/SearchStyle/IStyles';
 import { ISearchStyleBodyType } from 'src/app/models/SearchStyle/ISearchStyleBodyType';
 import { ISearchStyleModel } from 'src/app/models/SearchStyle/ISearchStyleModel';
-
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-vehicle-search-table',
@@ -36,6 +36,7 @@ export class VehicleSearchTableComponent implements OnChanges  {
   columnsToDisplayHeader = ['Action','Style Name', 'Base Msrp','Base Invoice', 'Market ClassName'];
   innerDisplayedColumns = ['modelYear','divisionName','modelName'];
   expandedElement: IStyles | null;
+  noData: any;
   
   constructor(private cd: ChangeDetectorRef) { 
   }
@@ -48,6 +49,7 @@ export class VehicleSearchTableComponent implements OnChanges  {
     this.dataSource = new MatTableDataSource(this.dataSourceStyleSearch);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    //this.noData = this.dataSource.data.length;// this.dataSource.connect().pipe(map(data => data.length === 0));
   }
 
   dataSourceStyleSearchValid(dataSourceStyleSearch : IStyles[]) : boolean {

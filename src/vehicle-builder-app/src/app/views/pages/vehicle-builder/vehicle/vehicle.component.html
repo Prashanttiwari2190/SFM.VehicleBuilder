@@ -93,7 +93,7 @@
                         }}</span></label>
                 <br />
                 <button *ngFor="let item of exteriorColor" class="btn btn-vc-exterior"
-                    (click)="onColorButtonClick(item.colorName)" value="item.colorName"
+                    (click)="onColorButtonClick(item.colorId)" value="item.colorId"
                     [style.background-color]="item.colorCode"></button>
             </div>
         </div>
@@ -101,13 +101,12 @@
     <div class="row  mb-3">
         <div>
             <button type="button" class="btn btn-success me-2 float-end col-sm-3 " (click)="loadStyleSearch()">
-                Search
-                <!-- <span *ngIf="!isLoading">
+                <span *ngIf="!isLoading">
                     <i data-feather="check" appFeatherIcon></i> Search
                 </span>
                 <span *ngIf="isLoading">
-                    <i class="spin" data-feather="loader" appFeatherIcon></i>
-                </span> -->
+                    <i class="spin" data-feather="loader" appFeatherIcon>Searching...</i>
+                </span>
             </button>
         </div>
     </div>
