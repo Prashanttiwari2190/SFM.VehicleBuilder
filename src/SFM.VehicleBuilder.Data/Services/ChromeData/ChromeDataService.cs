@@ -107,6 +107,13 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
                     value = styleFilter.CabStyleId,
                     importance = SearchImportanceType.MustHave,
                  },
+                new SearchCriterion() // Search By StyleId
+                 {
+                    name = SearchTokenName.styleId,
+                    type = SearchCriterionType.String,
+                    value = styleFilter.StyleId,
+                    importance = SearchImportanceType.MustHave,
+                 },
 
                 new SearchCriterion() // Search By wheelbase
                  {

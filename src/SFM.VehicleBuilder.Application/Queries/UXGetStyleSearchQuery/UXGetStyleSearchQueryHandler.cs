@@ -33,6 +33,7 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
                 styleFilter.MaxWheelBase = request.MaxWheelBase;
                 styleFilter.CabStyleId = request.CabStyleId;
                 styleFilter.ExteriorColorId = request.ExteriorColorId;
+                styleFilter.StyleId = request.StyleId;
 
                 return (await chromeDataService.GetStyles(styleFilter)).Select(i =>
                          new Styles

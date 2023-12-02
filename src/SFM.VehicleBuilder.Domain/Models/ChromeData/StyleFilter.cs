@@ -17,6 +17,11 @@ namespace SFM.VehicleBuilder.Domain.Models.ChromeData
         public string Year { get; set; }
 
         /// <summary>
+        ///   Gets or sets the StyleId.
+        /// </summary>
+        public string StyleId { get; set; }
+
+        /// <summary>
         ///   Gets or sets the DivisonId.
         /// </summary>
         public string DivisionId { get; set; }

@@ -171,6 +171,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
                 MaxWheelBase = Convert.ToString(styleFilterParameter.MaxWheelBase * 1.1m),
                 MinPriceLevel = Convert.ToString(styleFilterParameter.MinPriceLevel),
                 MaxPriceLevel = Convert.ToString(styleFilterParameter.MaxPriceLevel),
+                StyleId = Convert.ToString(styleFilterParameter.StyleId),
             };
 
             return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));

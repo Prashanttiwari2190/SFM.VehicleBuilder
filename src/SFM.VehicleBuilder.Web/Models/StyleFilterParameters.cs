@@ -12,6 +12,11 @@ namespace SFM.VehicleBuilder.Web
     public class StyleFilterParameters
     {
         /// <summary>
+        ///   Gets or sets the StyleId.
+        /// </summary>
+        public int StyleId { get; set; }
+
+        /// <summary>
         ///   Gets or sets the Year.
         /// </summary>
         public int Year { get; set; }

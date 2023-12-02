@@ -13,6 +13,11 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
         }
 
         /// <summary>
+        ///   Gets or sets the StyleId.
+        /// </summary>
+        public string StyleId { get; set; }
+
+        /// <summary>
         ///   Gets or sets the Year.
         /// </summary>
         public string Year { get; set; }
