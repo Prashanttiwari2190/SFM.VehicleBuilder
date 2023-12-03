@@ -19,16 +19,22 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
     LayoutModule,
     HttpClientModule,
     AuthModule.forRoot({
-      domain: 'sfm-vehicle-test.us.auth0.com',
-      clientId: '8vXtQCL7QPQVD0LvtJgn4e8eX4IbtoOL',
+      domain: 'sfm-vehicle-builder.us.auth0.com',
+      clientId: 'abJ3fa9jFg0jL4xy2f9Qzi3WAsPdx56j',
       cacheLocation: 'localstorage',
-      audience: 'https://www.sfmdev.com',
+      audience: 'https://vehicle-builder.sewelldevteam.com',
       httpInterceptor: {
         allowedList: [
           {
             uri: 'https://test.sfmdev.com:5031/api/*',
             tokenOptions: {
-              audience: 'https://www.sfmdev.com'
+              audience: 'https://vehicle-builder.sewelldevteam.com'
+            },
+          },
+          {
+            uri: 'https://vehicle-builder.sewelldevteam.com/api/*',
+            tokenOptions: {
+              audience: 'https://vehicle-builder.sewelldevteam.com'
             },
           }
         ]
