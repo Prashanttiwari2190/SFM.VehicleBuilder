@@ -4,7 +4,7 @@
         <div class="col-sm-3">
             <div>
                 <label for="year" class="form-label">Year:</label>
-                <select #year class="form-select" [(ngModel)]="selectedYear" (change)="onYearChange()">
+                <select #year class="form-select" [(ngModel)]="selectedYear" (change)="onYearChange()" required>
                     <option value="0" selected>Select Year</option>
                     <option *ngFor="let desc of years" [value]="desc">{{desc}}</option>
                 </select>
@@ -113,4 +113,9 @@
 
 <div *ngIf='styles'>
     <app-vehicle-search-table [dataSourceStyleSearch]="styles"></app-vehicle-search-table>
+</div>
+<div  *ngIf="displayMessage" class="text-center">
+    <div class="alert alert-danger" role="alert">
+        <p>{{displayMessage}}</p>
+      </div>
 </div>

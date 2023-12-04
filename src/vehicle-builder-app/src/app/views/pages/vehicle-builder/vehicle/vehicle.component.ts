@@ -18,23 +18,24 @@ export class VehicleComponent implements OnInit {
   subs = new SubSink();
   isLoading = false;
   years: IYear[] = [];
-  selectedYear: number;
+  selectedYear: number = 0;
 
   devisions: any[] = [];
-  selectedMake: number;
+  selectedMake: number = 0;
 
   models: IModel[] = [];
-  selectedModel: number;
+  selectedModel: number = 0;
 
   styleOptions: IStyleOptions;
   cabStyle: ICabStyle[] = [];
   exteriorColor: IExteriorColor[] = [];
   selectedExteriorColor: string;
-  selectedCabStyle: number;
+  selectedCabStyle: number = 0;
   minWheelBase: number;
   maxWheelBase: number;
   minPriceLevel: number;
   maxPriceLevel: number;
+  displayMessage: string;
 
   styleFilter: IStyleFilters;
   styles: IStyles[] = [];
@@ -78,7 +79,8 @@ export class VehicleComponent implements OnInit {
 
   loadStyleSearch() {
     this.isLoading = true;
-    this.styleFilter = {
+    this.styleFilter = 
+      {
       year: this.selectedYear,
       divisionId: this.selectedMake,
       modelId: this.selectedModel,
@@ -92,6 +94,10 @@ export class VehicleComponent implements OnInit {
     this.service.getStyleSearch(this.styleFilter).subscribe(styles => {
       this.styles = styles;
       this.isLoading = false;
+      if(this.styles.length == 0)
+        this.displayMessage = "No vehicle style search information found for the selected criteria.....  Why don't you try something else:)";
+      else
+        this.displayMessage = "";
       console.log(this.styles);
     });
 
