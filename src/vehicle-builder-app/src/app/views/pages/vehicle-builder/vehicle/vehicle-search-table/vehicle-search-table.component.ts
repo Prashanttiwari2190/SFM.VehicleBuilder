@@ -33,13 +33,11 @@ export class VehicleSearchTableComponent implements OnChanges  {
   dataSource: MatTableDataSource<IStyles>;
   styleSearchResultData: IStyles[] = [];
   columnsToDisplay = ['action','styleName','baseMsrp','baseInvoice','marketClassName'];
-  columnsToDisplayHeader = ['Action','Style Name', 'Base Msrp','Base Invoice', 'Market ClassName'];
-  innerDisplayedColumns = ['modelYear','divisionName','modelName'];
   expandedElement: IStyles | null;
-  noData: any;
+  displayMessage: string;
   
   constructor(private cd: ChangeDetectorRef) { 
-  }
+   }
   
   ngOnChanges() {
     this.loadResultData();
@@ -49,7 +47,11 @@ export class VehicleSearchTableComponent implements OnChanges  {
     this.dataSource = new MatTableDataSource(this.dataSourceStyleSearch);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    //this.noData = this.dataSource.data.length;// this.dataSource.connect().pipe(map(data => data.length === 0));
+    debugger;
+    if(this.dataSource.data.length == 0)
+      this.displayMessage = "No Data Found";
+    else
+      this.displayMessage = "";
   }
 
   dataSourceStyleSearchValid(dataSourceStyleSearch : IStyles[]) : boolean {
