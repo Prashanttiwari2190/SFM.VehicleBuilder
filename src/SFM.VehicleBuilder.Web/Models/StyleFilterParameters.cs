@@ -25,35 +25,5 @@ namespace SFM.VehicleBuilder.Web
         ///   Gets or sets the ModelId.
         /// </summary>
         public int ModelId { get; set; }
-
-        /// <summary>
-        ///   Gets or sets the ExteriorColorId.
-        /// </summary>
-        public string ExteriorColorId { get; set; }
-
-        /// <summary>
-        ///   Gets or sets the CabStyleId.
-        /// </summary>
-        public int CabStyleId { get; set; }
-
-        /// <summary>
-        ///   Gets or sets the MinWheelBase.
-        /// </summary>
-        public decimal MinWheelBase { get; set; }
-
-        /// <summary>
-        ///   Gets or sets the MaxWheelBase.
-        /// </summary>
-        public decimal MaxWheelBase { get; set; }
-
-        /// <summary>
-        ///   Gets or sets the MinPriceLevel.
-        /// </summary>
-        public decimal MinPriceLevel { get; set; }
-
-        /// <summary>
-        ///   Gets or sets the MaxPriceLevel.
-        /// </summary>
-        public decimal MaxPriceLevel { get; set; }
     }
 }
