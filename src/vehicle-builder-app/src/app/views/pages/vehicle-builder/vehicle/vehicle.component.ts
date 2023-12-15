@@ -76,6 +76,15 @@ export class VehicleComponent implements OnInit {
     this.selectedExteriorColor = color;
   }
 
+  loadStyles() {
+    this.isLoading = true;
+    this.service.getStyles(this.selectedYear, this.selectedModel).subscribe(styles => {
+      this.styles = styles;
+      this.isLoading = false;
+      console.log(this.styles);
+    });
+  }
+
   loadStyleSearch() {
     this.isLoading = true;
     this.styleFilter = {
