@@ -12181,7 +12181,7 @@ namespace ChromeData
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:configcompare4h.kp.chrome.com", Order=0)]
         public ChromeData.ModelConfigurationByStyleIdsRequest ModelConfigurationByStyleIdsRequest;
-        
+
         public getModelConfigurationByStyleIdsRequest()
         {
         }

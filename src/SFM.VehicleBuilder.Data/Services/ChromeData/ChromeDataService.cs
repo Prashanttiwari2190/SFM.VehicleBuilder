@@ -1,7 +1,9 @@
 ﻿using ChromeData;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using SFM.VehicleBuilder.Domain.Models.ChromeData;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace SFM.VehicleBuilder.Data.Services.ChromeData
@@ -61,6 +63,27 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
             };
             var modelRes = await client.getModelsByDivisionAsync(modelReq);
             return modelRes.ModelArrayElement;
+        }
+
+        public async Task<ModelConfigurationElement> GetModelConfigurationByStyleIds(int[] styleids)
+        {
+            int[] ids = new int[] { 301 };
+            var modelReq = new getModelConfigurationByStyleIdsRequest()
+            {
+                ModelConfigurationByStyleIdsRequest = new ModelConfigurationByStyleIdsRequest
+                {
+                    accountInfo = accountInfo,
+                    styleIds = styleids,
+                    returnParameters = new ModelReturnParameters()
+                    {
+                        includeTechSpecs = true,
+                        includeEquipment = true,
+                        filteredTechSpecTitleIds = ids,
+                    },
+                },
+            };
+            var modelRes = await client.getModelConfigurationByStyleIdsAsync(modelReq);
+            return modelRes.ModelConfigurationElement;
         }
 
         public async Task<IEnumerable<Style>> GetStyles(StyleFilter styleFilter)
