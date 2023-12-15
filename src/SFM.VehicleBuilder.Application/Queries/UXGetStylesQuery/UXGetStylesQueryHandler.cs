@@ -102,34 +102,6 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetStylesQuery
                                      NameField = k.name,
                                      ValueField = k.name,
                                  }).ToArray(),
-                                 ConstraintField = i.configurationState.constraint == null ? null : new ConfigurationConstraint
-                                 {
-                                     ConstraintIdField = i.configurationState.constraint.constraintId,
-                                     ConstraintNameField = i.configurationState.constraint.constraintName,
-                                     AvailableOptionsField = i.configurationState.constraint.availableOptions,
-                                     PreselectedOptionsField = i.configurationState.constraint.preselectedOptions,
-                                 },
-                                 UserDefinedTechSpecsField = i.configurationState.userDefinedTechSpecs == null ? null : new UserDefinedTechSpecs
-                                 {
-                                     RoadSurfaceField = i.configurationState.userDefinedTechSpecs.roadSurface.ToString(),
-                                     RoadGradeField = i.configurationState.userDefinedTechSpecs.roadGrade,
-                                     OccupantWeightField = i.configurationState.userDefinedTechSpecs.occupantWeight,
-                                     BodyLengthField = i.configurationState.userDefinedTechSpecs.bodyLength,
-                                     BodyFrontalAreaField = i.configurationState.userDefinedTechSpecs.bodyFrontalArea,
-                                     BodyWeightField = i.configurationState.userDefinedTechSpecs.bodyWeight,
-                                     CabToBodyDistanceField = i.configurationState.userDefinedTechSpecs.trailerWeight,
-                                     TrailerWeightField = i.configurationState.userDefinedTechSpecs.cabToBodyDistance,
-                                     CargoItemsField = i.configurationState.userDefinedTechSpecs.cargoItems == null ? null : i.configurationState.userDefinedTechSpecs.cargoItems.Select(k => new CargoItem
-                                     {
-                                         ItemNameField = k.itemName,
-                                         LiquidCargoField = k.liquidCargo,
-                                         CargoWeightField = k.cargoWeight,
-                                         DistanceFromRearAxleField = k.distanceFromRearAxle,
-                                     }).ToArray(),
-
-                                     BodyTypeField = i.configurationState.userDefinedTechSpecs.bodyType.ToString(),
-                                     MeasurementSystemField = i.configurationState.userDefinedTechSpecs.measurementSystem.ToString(),
-                                 },
                              },
                          }).ToList();
         }

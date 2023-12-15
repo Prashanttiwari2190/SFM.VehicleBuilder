@@ -71,17 +71,6 @@ export class VehicleComponent implements OnInit {
     });
   }
 
- 
-
-  loadStyles() {
-    this.isLoading = true;
-    this.service.getStyles(this.selectedYear, this.selectedModel).subscribe(styles => {
-      this.styles = styles;
-      this.isLoading = false;
-      console.log(this.styles);
-    });
-  }
-
   loadStyleSearch() {
     this.isLoading = true;
     if(this.selectedYear == 0){
@@ -100,13 +89,13 @@ export class VehicleComponent implements OnInit {
     }
 
     if(this.isYearSelected == true && this.isMakeSelected == true && this.isModelSelected == true){
-      this.styleFilter =
+      /* this.styleFilter =
         {
         year: this.selectedYear,
         divisionId: this.selectedMake,
         modelId: this.selectedModel,
-      };
-      this.service.getStyleSearch(this.styleFilter).subscribe(styles => {
+      }; */
+      this.service.getStyles(this.selectedYear, this.selectedModel).subscribe(styles => {
         this.styles = styles;
         this.isLoading = false;
 

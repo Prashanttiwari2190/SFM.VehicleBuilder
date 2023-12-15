@@ -111,7 +111,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         ///   Gets the style list.
         /// </summary>
         /// <param name="year"> year information.</param>
-        /// <param name="modelId"> model information.</param>
+        /// <param name="model"> model information.</param>
         /// <returns>Returns a <see cref="string"/> containg the status of the model.</returns>
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 401)]
@@ -119,11 +119,11 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         [ProducesResponseType(typeof(string), 500)]
         [HttpGet("{year}/style/{model}")]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Styles>>> GetStyles([FromRoute] int year, [FromRoute] int modelId)
+        public async Task<ActionResult<IEnumerable<Styles>>> GetStyles([FromRoute] int year, [FromRoute] int model)
         {
             var query = new UXGetStylesQuery(correlationId)
             {
-                ModelId = modelId,
+                ModelId = model,
             };
 
             return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));
