@@ -37,5 +37,12 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
         /// <param name="styleFilter">.</param>
         /// <returns>Returns a <see cref="Task"/>.</returns>
         Task<IEnumerable<Style>> GetStyles(StyleFilter styleFilter);
+
+        /// <summary>
+        ///   Gets vehicle divison models.
+        /// </summary>
+        /// <param name="modelId">.</param>
+        /// <returns>Returns a <see cref="Task"/>.</returns>
+        Task<IEnumerable<Style>> GetStyles(int modelId);
     }
 }
