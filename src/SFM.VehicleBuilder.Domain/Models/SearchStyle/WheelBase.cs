@@ -15,6 +15,6 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a value indicating whether a chrome data Value.
         /// </summary>
-        public IEnumerable<string> Value { get; set; }
+        public string Value { get; set; }
     }
 }
