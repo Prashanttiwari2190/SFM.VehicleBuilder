@@ -1,6 +1,7 @@
 export interface ICabStyle {
-    cabStyleId: number,
-    cabStyleName: string
+    bodyTypeId: number,
+    bodyTypeName: string,
+    primary: boolean
 }
 
 export interface IExteriorColor {

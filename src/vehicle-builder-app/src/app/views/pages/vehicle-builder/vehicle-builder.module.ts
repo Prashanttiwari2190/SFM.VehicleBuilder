@@ -14,12 +14,17 @@ import { VehicleService } from 'src/app/core/services/vehicle.service';
 import { NgbAccordionModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { VehicleSearchTableComponent } from './vehicle/vehicle-search-table/vehicle-search-table.component';
 import { VehicleSearchRowDetailsComponent } from './vehicle/vehicle-search-row-details/vehicle-search-row-details.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
     path: '',
     component: VehicleBuilderComponent
-  }
+  },
+  {
+    path: 'build',
+    component:  VehicleBuilderComponent,
+  },
 ]
 
 
@@ -38,6 +43,7 @@ const routes: Routes = [
     NgbAccordionModule,
     MatTableModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   exports: [MatTableModule],
   providers: [VehicleService]

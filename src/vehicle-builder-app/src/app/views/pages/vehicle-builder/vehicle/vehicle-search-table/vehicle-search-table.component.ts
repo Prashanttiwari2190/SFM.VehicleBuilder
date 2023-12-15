@@ -6,6 +6,8 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { IStyles } from 'src/app/models/SearchStyle/IStyles';
 import { ISearchStyleBodyType } from 'src/app/models/SearchStyle/ISearchStyleBodyType';
 import { ISearchStyleModel } from 'src/app/models/SearchStyle/ISearchStyleModel';
+import { ICabStyle, IExteriorColor } from 'src/app/models/IStyleOptions';
+
 import { map } from 'rxjs';
 
 @Component({
@@ -32,14 +34,24 @@ export class VehicleSearchTableComponent implements OnChanges  {
 
   dataSource: MatTableDataSource<IStyles>;
   styleSearchResultData: IStyles[] = [];
-  columnsToDisplay = ['action','styleName','baseMsrp','baseInvoice','marketClassName'];
-  columnsToDisplayHeader = ['Action','Style Name', 'Base Msrp','Base Invoice', 'Market ClassName'];
-  innerDisplayedColumns = ['modelYear','divisionName','modelName'];
+  columnsToDisplay = ['action','manufacturerModelCode','styleName','model','baseMsrp',];
   expandedElement: IStyles | null;
-  noData: any;
+  
+  cabStyle: ICabStyle[] = [];
+  wheelBaseList: any[] = [];
+  exteriorColor: IExteriorColor[] = [];
+  selectedExteriorColor: string;
+  selectedCabStyle: string = "";
+  selectedWheelBase: number = 0;
+  minWheelBase: number;
+  maxWheelBase: number;
+  minPriceLevel: number;
+  maxPriceLevel: number;
+  
+
   
   constructor(private cd: ChangeDetectorRef) { 
-  }
+   }
   
   ngOnChanges() {
     this.loadResultData();
@@ -47,18 +59,35 @@ export class VehicleSearchTableComponent implements OnChanges  {
 
   loadResultData(){
     this.dataSource = new MatTableDataSource(this.dataSourceStyleSearch);
+    this.dataSourceStyleSearch.forEach(e=> {
+      e.bodyTypes.forEach(e1 => {
+        let idx = this.cabStyle.findIndex(elem => elem.bodyTypeId === e1.bodyTypeId)
+        if(idx == -1)
+            this.cabStyle.push(e1);
+      })
+    })
+
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    //this.noData = this.dataSource.data.length;// this.dataSource.connect().pipe(map(data => data.length === 0));
+
   }
 
   dataSourceStyleSearchValid(dataSourceStyleSearch : IStyles[]) : boolean {
     return typeof dataSourceStyleSearch != "undefined" && dataSourceStyleSearch != null && dataSourceStyleSearch.length > 0;
   }
 
-  // applyFilter(filterValue: string) {
-  //   this.innerTables.forEach((table, index) => (table.dataSource as MatTableDataSource<ISearchStyleBodyType>).filter = filterValue.trim().toLowerCase());
-  // }
+   applyFilter(filterValue : string) {
+     this.dataSource.filter = this.selectedCabStyle.trim().toLowerCase();
+   }
+
+   resetFilter() {
+    this.selectedCabStyle = '';
+    this.applyFilter('');
+  }
+
+  onColorButtonClick(color: string) {
+    this.selectedExteriorColor = color;
+  }
 
   toggleRow(element: IStyles) {
     element ? (this.expandedElement = this.expandedElement === element ? null : element) : null;

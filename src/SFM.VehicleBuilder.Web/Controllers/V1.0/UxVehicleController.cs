@@ -172,12 +172,6 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
                 Year = Convert.ToString(styleFilterParameter.Year),
                 DivisionId = Convert.ToString(styleFilterParameter.DivisionId),
                 ModelId = Convert.ToString(styleFilterParameter.ModelId),
-                ExteriorColorId = Convert.ToString(styleFilterParameter.ExteriorColorId),
-                CabStyleId = Convert.ToString(styleFilterParameter.CabStyleId),
-                MinWheelBase = Convert.ToString(styleFilterParameter.MinWheelBase * 0.9m),
-                MaxWheelBase = Convert.ToString(styleFilterParameter.MaxWheelBase * 1.1m),
-                MinPriceLevel = Convert.ToString(styleFilterParameter.MinPriceLevel),
-                MaxPriceLevel = Convert.ToString(styleFilterParameter.MaxPriceLevel),
             };
 
             return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));

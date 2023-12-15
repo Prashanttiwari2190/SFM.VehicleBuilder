@@ -27,12 +27,6 @@ namespace SFM.VehicleBuilder.Application.Queries.UXGetYearQuery
                 styleFilter.Year = request.Year;
                 styleFilter.ModelId = request.ModelId;
                 styleFilter.DivisionId = request.DivisionId;
-                styleFilter.MaxPriceLevel = request.MaxPriceLevel;
-                styleFilter.MinPriceLevel = request.MinPriceLevel;
-                styleFilter.MinWheelBase = request.MinWheelBase;
-                styleFilter.MaxWheelBase = request.MaxWheelBase;
-                styleFilter.CabStyleId = request.CabStyleId;
-                styleFilter.ExteriorColorId = request.ExteriorColorId;
 
                 return (await chromeDataService.GetStyles(styleFilter)).Select(i =>
                          new Styles
