@@ -25,16 +25,16 @@ namespace SFM.VehicleBuilder.Data
             services
 
                 // Fluent Migrator
-                .AddFluentMigratorCore()
-                    .ConfigureRunner(runner => runner
-                        .AddSqlServer()
-                        .WithGlobalConnectionString(configuration.GetConnectionString("SFM.VehicleBuilder"))
-                        .ScanIn(typeof(AssemblyMarker).Assembly).For.EmbeddedResources()
-                        .ScanIn(typeof(AssemblyMarker).Assembly).For.Migrations())
-                .AddTransient<Migrator>()
+                // .AddFluentMigratorCore()
+                //    .ConfigureRunner(runner => runner
+                //        .AddSqlServer()
+                //       .WithGlobalConnectionString(configuration.GetConnectionString("SFM.VehicleBuilder"))
+                //        .ScanIn(typeof(AssemblyMarker).Assembly).For.EmbeddedResources()
+                //        .ScanIn(typeof(AssemblyMarker).Assembly).For.Migrations())
+                // .AddTransient<Migrator>()
 
                 // DB Connections
-                .AddTransient<IDbConnection>(OpenConnection)
+                // .AddTransient<IDbConnection>(OpenConnection)
 
                 // Other
                 .AddAutoMapper(typeof(AssemblyMarker))

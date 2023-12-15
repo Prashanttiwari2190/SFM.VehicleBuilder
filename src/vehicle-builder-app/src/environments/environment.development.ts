@@ -1,5 +1,5 @@
 export const environment = {
-    production: true,
+    production: false,
     apiBaseUrl: 'https://test.sfmdev.com:5031/api/v1.0/'
   };
   

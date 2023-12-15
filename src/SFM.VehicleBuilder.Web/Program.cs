@@ -20,20 +20,20 @@ namespace SFM.VehicleBuilder.Web
         {
             var host = CreateHostBuilder(args).Build();
 
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                try
-                {
-                    // Run fluent migrator
-                    scope.ServiceProvider.GetRequiredService<Migrator>().RunMigrations();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-            }
+            // using (var scope = host.Services.CreateScope())
+            // {
+            //    var services = scope.ServiceProvider;
+            //    try
+            //    {
+            //        // Run fluent migrator
+            //        scope.ServiceProvider.GetRequiredService<Migrator>().RunMigrations();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine(e);
+            //        throw;
+            //    }
+            // }
 
             host.Run();
         }

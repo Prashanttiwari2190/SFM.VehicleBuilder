@@ -8,15 +8,15 @@ const routes: Routes = [
     path: '',
     component: BaseComponent,
     children: [
+      { path: '', redirectTo: 'build', pathMatch: 'full' }, 
       {
         path: 'dashboard',
         loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'vehicle-builder',
+        path: 'build',
         loadChildren: () => import('./views/pages/vehicle-builder/vehicle-builder.module').then(m => m.VehicleBuilderModule)
       },
-      { path: '', redirectTo: 'vehicle-builder', pathMatch: 'full' }, 
     ],
     canActivate: [AuthGuard]
   }
