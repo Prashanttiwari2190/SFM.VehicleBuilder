@@ -15,7 +15,7 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a value indicating whether gets or sets a chrome data Name.
         /// </summary>
-        public string[] Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         ///   Gets or sets a value indicating whether a chrome data RgbValue.

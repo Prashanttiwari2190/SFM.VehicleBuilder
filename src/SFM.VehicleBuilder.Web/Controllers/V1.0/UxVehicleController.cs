@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using DocumentFormat.OpenXml.Bibliography;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SFM.VehicleBuilder.Application.Queries.GetModelConfigByStylesQuery;
 using SFM.VehicleBuilder.Application.Queries.SampleQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetMakeQuery;
-using SFM.VehicleBuilder.Application.Queries.UXGetModeByStylesQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetModelQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetYearQuery;
@@ -183,11 +181,11 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         /// </summary>
         /// <param name="styleids"> division information.</param>
         /// <returns>Returns a <see cref="int"/> containg the ModelConfigration of the styles.</returns>
-        [HttpPost("model-style-search")]
+        [HttpPost("styles-config")]
         [Authorize]
         public async Task<ActionResult<ModelConfigration>> GetModelConfigurationByStyleIds([FromBody] int[] styleids)
         {
-            var query = new UXGetModeByStylesQuery(correlationId)
+            var query = new GetModelConfigByStylesQuery(correlationId)
             {
                 StyleIds = styleids,
             };
