@@ -161,5 +161,10 @@ namespace SFM.VehicleBuilder.Domain.Models.SearchStyle
         ///   Gets or sets a value indicating whether gets or sets the configurationStateField.
         /// </summary>
         public ConfigurationState ConfigurationStateField { get; set; }
+
+        /// <summary>
+        ///   Gets or sets a value indicating whether gets or sets the ModelConfig.
+        /// </summary>
+        public ModelConfigration ModelConfig { get; set; }
     }
 }

@@ -6,13 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using ChromeData;
-using DocumentFormat.OpenXml.Spreadsheet;
 using MediatR;
 using SFM.VehicleBuilder.Data.Services.ChromeData;
 using SFM.VehicleBuilder.Domain.Models;
-using SFM.VehicleBuilder.Domain.Models.ChromeData;
-using SFM.VehicleBuilder.Domain.Models.SearchStyle;
 
 namespace SFM.VehicleBuilder.Application.Queries.GetModelConfigByStylesQuery
 {
@@ -33,22 +29,21 @@ namespace SFM.VehicleBuilder.Application.Queries.GetModelConfigByStylesQuery
             var response = await chromeDataService.GetModelConfigurationByStyleIds(request.StyleIds);
             if (response != null)
             {
-               var responseWheelbase = response.configuration.technicalSpecifications.Where(s => s.titleId == 301);
-               var responsecolors = response.configuration.equipment.Where(s => s.headerName == "PRIMARY PAINT");
-               wheelbase = responseWheelbase.SelectMany(s => s.values.Select(v => new WheelBase { Value = v.value })).ToList();
-               modelConfigration.Wheelbase = wheelbase;
-               if (responsecolors.Any())
-                {
-                    foreach (var colors in responsecolors)
-                    {
-                        var colorobj = new GenericColors();
-                        colorobj.Name = colors.genericColors.Select(i => i.name).First();
-                        colorobj.RgbValue = colors.rgbValue;
-                        genericColors.Add(colorobj);
-                    }
-
-                    modelConfigration.GenericColors = genericColors;
-                }
+                var responseWheelbase = response.configuration.technicalSpecifications.Where(s => s.titleId == 301);
+                var responsecolors = response.configuration.equipment.Where(s => s.headerName == "PRIMARY PAINT");
+                modelConfigration.Wheelbase = responseWheelbase.SelectMany(s => s.values.Select(v =>
+                  new WheelBase
+                  {
+                      StyleIds = v.availableStyleIds,
+                      Value = v.value,
+                  })).OrderBy(x => x.Value).ToList();
+                modelConfigration.GenericColors = responsecolors.SelectMany(s => s.genericColors.Select(v =>
+                  new GenericColors
+                  {
+                      StyleIds = s.availableStyleIds,
+                      Name = v.name,
+                      RgbValue = s.rgbValue,
+                  })).ToList();
             }
 
             return modelConfigration;
