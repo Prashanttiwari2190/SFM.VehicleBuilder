@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using DocumentFormat.OpenXml.Bibliography;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SFM.VehicleBuilder.Application.Queries.GetModelConfigByStylesQuery;
 using SFM.VehicleBuilder.Application.Queries.SampleQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetMakeQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetModelQuery;
@@ -172,6 +171,23 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
                 Year = Convert.ToString(styleFilterParameter.Year),
                 DivisionId = Convert.ToString(styleFilterParameter.DivisionId),
                 ModelId = Convert.ToString(styleFilterParameter.ModelId),
+            };
+
+            return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));
+        }
+
+        /// <summary>
+        ///   Gets the StyleSearch list.
+        /// </summary>
+        /// <param name="styleids"> division information.</param>
+        /// <returns>Returns a <see cref="int"/> containg the ModelConfigration of the styles.</returns>
+        [HttpPost("styles-config")]
+        [Authorize]
+        public async Task<ActionResult<ModelConfigration>> GetModelConfigurationByStyleIds([FromBody] int[] styleids)
+        {
+            var query = new GetModelConfigByStylesQuery(correlationId)
+            {
+                StyleIds = styleids,
             };
 
             return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));
