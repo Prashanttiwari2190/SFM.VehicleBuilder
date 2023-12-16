@@ -13,6 +13,11 @@ namespace SFM.VehicleBuilder.Domain.Models
     public class GenericColors
     {
         /// <summary>
+        ///   Gets or sets a chrome data StyleIds Available.
+        /// </summary>
+        public int[] StyleIds { get; set; }
+
+        /// <summary>
         ///   Gets or sets a value indicating whether gets or sets a chrome data Name.
         /// </summary>
         public string Name { get; set; }
