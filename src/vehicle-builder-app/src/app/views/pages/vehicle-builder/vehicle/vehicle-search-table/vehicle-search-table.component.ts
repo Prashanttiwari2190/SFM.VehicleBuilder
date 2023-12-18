@@ -60,6 +60,8 @@ export class VehicleSearchTableComponent implements OnChanges {
   }
 
   loadResultData() {
+    this.cabStyle= [];
+    this.resetFilter();
     this.dataSource = new MatTableDataSource(this.dataSourceStyleSearch);
     this.dataSourceStyleSearch.forEach(e => {
       e.bodyTypes.forEach(e1 => {
@@ -71,7 +73,7 @@ export class VehicleSearchTableComponent implements OnChanges {
 
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-
+    
   }
 
   dataSourceStyleSearchValid(dataSourceStyleSearch: IStyles[]): boolean {
@@ -91,6 +93,13 @@ export class VehicleSearchTableComponent implements OnChanges {
       this.styleConfig = styleConfig;
       this.genericColors = styleConfig.genericColors;
       this.wheelBaseList = styleConfig.wheelbase;
+
+      this.dataSource.filteredData.forEach(item => {
+        const wheelBaseValue = this.styleConfig.wheelbase.find(w => w.styleIds.includes(item.styleId));
+        if(wheelBaseValue && item.styleName.indexOf(wheelBaseValue?.value) == -1)
+          item.styleName = item.styleName +" " +  wheelBaseValue?.value +  "\" WB";
+        });
+
     });
 
 
