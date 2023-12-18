@@ -10,6 +10,7 @@ import { IStyleFilters } from 'src/app/models/IStyleFilters';
 import { IStyles } from 'src/app/models/SearchStyle/IStyles';
 import { ICON_REGISTRY_PROVIDER } from '@angular/material/icon';
 import { style } from '@angular/animations';
+import { IModelConfigration } from 'src/app/models/SearchStyle/IModelConfigration';
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +49,19 @@ export class VehicleService {
           styleRsults
           return styleRsults;})
       );
-  }}
+  }
+
+  getStylesConfig(styleids: number[]): Observable<IModelConfigration> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+  
+    return this.http.post<IModelConfigration>('vehicle/styles-config', styleids, { headers })
+      .pipe(
+        map(stylesConfigResult => {
+          stylesConfigResult
+          return stylesConfigResult;})
+      );
+  }
+
+}

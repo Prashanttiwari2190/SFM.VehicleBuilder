@@ -12,7 +12,7 @@ export interface IStyles{
     styleNameWithoutTrim: string,
     trimName:number,
     manufacturerModelCode: string,
-    styleGroupStyleIds: number[],
+    //styleGroupStyleIds: number[],
     styleGroupBase: boolean,
     baseMsrp: number,
     baseInvoice: number,

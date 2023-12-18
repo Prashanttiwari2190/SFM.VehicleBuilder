@@ -52,3 +52,25 @@ tr.example-element-row:not(.example-expanded-row):active {
 mat-icon {
   cursor: pointer;
 }
+
+
+.btn-vc-exterior{
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+}
+
+.mat-loader-small{
+  height: 50px !important;
+  width: 50px !important;
+}
+
+.display-vc-inline{
+  display: inline-flex !important;
+}
+
+.body-panel hr{
+  margin: 0.5rem 0 !important;
+}
