@@ -24,13 +24,13 @@ export class VehicleComponent implements OnInit {
   devisions: any[] = [];
   selectedMake: number = 0;
   isMakeSelected: boolean = true;
-  
+
   models: IModel[] = [];
   selectedModel: number = 0;
-  isModelSelected : boolean = true;
-  
+  isModelSelected: boolean = true;
+
   styleOptions: IStyleOptions;
-  
+
   styleFilter: IStyleFilters;
   styles: IStyles[] = [];
   displayMessage: string;
@@ -44,8 +44,8 @@ export class VehicleComponent implements OnInit {
   loadYears() {
     this.service.getYears().subscribe(years => {
       this.years = years;
-      this.selectedMake= 0;
-      this.selectedModel= 0;
+      this.selectedMake = 0;
+      this.selectedModel = 0;
     });
   }
 
@@ -53,7 +53,7 @@ export class VehicleComponent implements OnInit {
   onYearChange() {
     this.service.getMakes(this.selectedYear).subscribe(devisions => {
       this.devisions = devisions;
-      this.selectedMake= 0;
+      this.selectedMake = 0;
       this.styles = [];
     });
   }
@@ -61,7 +61,7 @@ export class VehicleComponent implements OnInit {
   onMakeChange() {
     this.service.getModels(this.selectedYear, this.selectedMake).subscribe(models => {
       this.models = models;
-      this.selectedModel= 0;
+      this.selectedModel = 0;
       this.styles = [];
     });
   }
@@ -71,28 +71,28 @@ export class VehicleComponent implements OnInit {
     });
   }
 
- 
+
 
   loadStyleSearch() {
     this.isLoading = true;
-    if(this.selectedYear == 0){
+    if (this.selectedYear == 0) {
       this.isYearSelected = false;
-    } else {this.isYearSelected = true;}
-    if(this.selectedMake == 0){
+    } else { this.isYearSelected = true; }
+    if (this.selectedMake == 0) {
       this.isMakeSelected = false;
     } else {
       this.isMakeSelected = true;
     }
 
-    if(this.selectedModel == 0){
+    if (this.selectedModel == 0) {
       this.isModelSelected = false;
     } else {
       this.isModelSelected = true;
     }
 
-    if(this.isYearSelected == true && this.isMakeSelected == true && this.isModelSelected == true){
+    if (this.isYearSelected == true && this.isMakeSelected == true && this.isModelSelected == true) {
       this.styleFilter =
-        {
+      {
         year: this.selectedYear,
         divisionId: this.selectedMake,
         modelId: this.selectedModel,
@@ -101,14 +101,14 @@ export class VehicleComponent implements OnInit {
         this.styles = styles;
         this.isLoading = false;
 
-        if(this.styles.length == 0)
+        if (this.styles.length == 0)
           this.displayMessage = "No vehicle style search information found for the selected criteria.....  Why don't you try something else:)";
-      else
+        else
           this.displayMessage = "";
-  
+
         console.log(this.styles);
       });
-  }
+    }
 
   }
 }
