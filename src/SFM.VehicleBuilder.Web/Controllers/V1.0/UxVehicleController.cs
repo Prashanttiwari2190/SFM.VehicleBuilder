@@ -11,6 +11,7 @@ using SFM.VehicleBuilder.Application.Queries.SampleQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetMakeQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetModelQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetStyleOptionsQuery;
+using SFM.VehicleBuilder.Application.Queries.UXGetStylesQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetYearQuery;
 using SFM.VehicleBuilder.Domain.Correlation;
 using SFM.VehicleBuilder.Domain.Models;
@@ -100,6 +101,28 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
             {
                 Year = year,
                 Division = division,
+            };
+
+            return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));
+        }
+
+        /// <summary>
+        ///   Gets the style list.
+        /// </summary>
+        /// <param name="year"> year information.</param>
+        /// <param name="model"> model information.</param>
+        /// <returns>Returns a <see cref="string"/> containg the status of the model.</returns>
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 401)]
+        [ProducesResponseType(typeof(string), 404)]
+        [ProducesResponseType(typeof(string), 500)]
+        [HttpGet("{year}/style/{model}")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Styles>>> GetStyles([FromRoute] int year, [FromRoute] int model)
+        {
+            var query = new UXGetStylesQuery(correlationId)
+            {
+                ModelId = model,
             };
 
             return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));

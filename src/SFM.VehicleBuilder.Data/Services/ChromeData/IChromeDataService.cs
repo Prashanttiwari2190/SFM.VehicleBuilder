@@ -44,5 +44,12 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
         /// <param name="styleids">.</param>
         /// <returns>Returns a <see cref="Task"/>.</returns>
         Task<ModelConfigurationElement> GetModelConfigurationByStyleIds(int[] styleids);
+
+        /// <summary>
+        ///   Gets vehicle divison models.
+        /// </summary>
+        /// <param name="modelId">.</param>
+        /// <returns>Returns a <see cref="Task"/>.</returns>
+        Task<IEnumerable<Style>> GetStyles(int modelId);
     }
 }

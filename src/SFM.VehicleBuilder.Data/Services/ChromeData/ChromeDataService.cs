@@ -130,5 +130,20 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
             var styleRes = await client.searchStylesAsync(styleReq);
             return styleRes.StyleArrayElement;
         }
+
+        public async Task<IEnumerable<Style>> GetStyles(int modelId)
+        {
+            var styleReq = new getStylesRequest()
+            {
+                StylesRequest = new StylesRequest()
+                {
+                    accountInfo = accountInfo,
+                    modelId = modelId,
+                    filterRules = new FilterRules(),
+                },
+            };
+            var styleRes = await client.getStylesAsync(styleReq);
+            return styleRes.StyleArrayElement;
+        }
     }
 }

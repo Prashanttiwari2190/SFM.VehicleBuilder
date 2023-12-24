@@ -34,6 +34,10 @@ export class VehicleService {
     return this.http.get<IModel[]>(`vehicle/${year}/model/${make}`);
   }
 
+  getStyles(year: number, model: number): Observable<IStyles[]> {
+    return this.http.get<IStyles[]>(`vehicle/${year}/style/${model}`);
+  }
+
   getStyleOptions(): Observable<IStyleOptions> {
     return this.http.get<IStyleOptions>(`vehicle/style-options`);
   }
