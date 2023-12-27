@@ -85,6 +85,33 @@ namespace SFM.VehicleBuilder.Data.Services.ChromeData
             return modelRes.ModelConfigurationElement;
         }
 
+        /// <summary>
+        ///   GetConfigurationByStyleId.
+        /// </summary>
+        /// <param name="styleid">.</param>
+        /// <returns>Returns a <see cref="Task"/>.</returns>
+        public async Task<ConfigurationElement> GetConfigurationByStyleId(int styleid)
+        {
+            var configReq = new getConfigurationByStyleIdRequest()
+            {
+                ConfigurationByStyleIdRequest = new ConfigurationByStyleIdRequest
+                {
+                    accountInfo = accountInfo,
+                    styleId = styleid,
+                    returnParameters = new ReturnParameters()
+                    {
+                        includeTechSpecs = true,
+                        includeOptions = true,
+                        includeSpecialEquipmentOptions = true,
+                        includeStandards = true,
+                        includeOptionDescriptions = true,
+                    },
+                },
+            };
+            var modelRes = await client.getConfigurationByStyleIdAsync(configReq);
+            return modelRes.ConfigurationElement;
+        }
+
         public async Task<IEnumerable<Style>> GetStyles(StyleFilter styleFilter)
         {
             var criteriaList = new List<SearchCriterion>

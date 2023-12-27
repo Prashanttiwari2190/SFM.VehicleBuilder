@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery;
 using SFM.VehicleBuilder.Application.Queries.GetModelConfigByStylesQuery;
 using SFM.VehicleBuilder.Application.Queries.SampleQuery;
 using SFM.VehicleBuilder.Application.Queries.UXGetMakeQuery;
@@ -211,6 +212,23 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
             var query = new GetModelConfigByStylesQuery(correlationId)
             {
                 StyleIds = styleids,
+            };
+
+            return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));
+        }
+
+        /// <summary>
+        ///   Gets the StyleSearch list.
+        /// </summary>
+        /// <param name="styleid"> division information.</param>
+        /// <returns>Returns a <see cref="int"/> containg the ModelConfigration of the styles.</returns>
+        [HttpPost("style-config-option")]
+        [Authorize]
+        public async Task<ActionResult<List<StyleConfigration>>> GetConfigurationByStyleId([FromBody] int styleid)
+        {
+            var query = new GetConfigByStyleQuery(correlationId)
+            {
+                StyleId = styleid,
             };
 
             return await this.Execute(logger, () => mediator.Send(query, CancellationToken.None));
