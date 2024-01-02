@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Intuit.Ipp.Data;
 using MediatR;
 using Microsoft.Extensions.Options;
+using SFM.VehicleBuilder.Data.Services.ChromeData;
 using SFM.VehicleBuilder.Domain.Models;
 
 namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
@@ -35,11 +36,11 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration = new StyleConfigration();
                     var equipmentOption = new EquipmentOption();
                     styleConfigration.CategoryName = "BASE PRICE";
-                    equipmentOption.MSRP = response.configuration.style.baseMsrp;
-                    equipmentOption.Invoice = response.configuration.style.baseInvoice;
+                    equipmentOption.MSRP = Convert.ToDecimal(response.configuration.style.baseMsrp);
+                    equipmentOption.Invoice = Convert.ToDecimal(response.configuration.style.baseInvoice);
                     equipmentOption.Code = response.configuration.style.manufacturerModelCode;
-                    equipmentOption.Description = new List<string>();
-                    equipmentOption.Description.Add(response.configuration.style.styleName);
+                    equipmentOption.Description = new string[1];
+                    equipmentOption.Description[0] = response.configuration.style.styleName;
                     styleConfigration.EquipmentOptions = new List<EquipmentOption> { equipmentOption };
                     liststyleConfigration.Add(styleConfigration);
                 }
@@ -53,9 +54,9 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration.EquipmentOptions = responseExteriorColour.Select(responseExteriorColour => new EquipmentOption
                     {
                         Code = responseExteriorColour.oemOptionCode,
-                        MSRP = responseExteriorColour.msrp,
-                        Invoice = responseExteriorColour.invoice,
-                        Description = responseExteriorColour.descriptions.Select(desc => desc.description).ToList(),
+                        MSRP = Convert.ToDecimal(responseExteriorColour.msrp),
+                        Invoice = Convert.ToDecimal(responseExteriorColour.invoice),
+                        Description = responseExteriorColour.descriptions.Select(desc => desc.description).ToArray(),
                     }).ToList();
                     liststyleConfigration.Add(styleConfigration);
                 }
@@ -69,9 +70,9 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration.EquipmentOptions = responseOptionPackage.Select(responseOptionPackage => new EquipmentOption
                     {
                         Code = responseOptionPackage.oemOptionCode,
-                        MSRP = responseOptionPackage.msrp,
-                        Invoice = responseOptionPackage.invoice,
-                        Description = responseOptionPackage.descriptions.Select(desc => desc.description).ToList(),
+                        MSRP = Convert.ToDecimal(responseOptionPackage.msrp),
+                        Invoice = Convert.ToDecimal(responseOptionPackage.invoice),
+                        Description = responseOptionPackage.descriptions.Select(desc => desc.description).ToArray(),
                     }).ToList();
                     liststyleConfigration.Add(styleConfigration);
                 }
@@ -85,9 +86,9 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration.EquipmentOptions = responseEngine.Select(responseEngine => new EquipmentOption
                     {
                         Code = responseEngine.oemOptionCode,
-                        MSRP = responseEngine.msrp,
-                        Invoice = responseEngine.invoice,
-                        Description = responseEngine.descriptions.Select(desc => desc.description).ToList(),
+                        MSRP = Convert.ToDecimal(responseEngine.msrp),
+                        Invoice = Convert.ToDecimal(responseEngine.invoice),
+                        Description = responseEngine.descriptions.Select(desc => desc.description).ToArray(),
                     }).ToList();
                     liststyleConfigration.Add(styleConfigration);
                 }
@@ -101,9 +102,9 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration.EquipmentOptions = responseTires.Select(responseTires => new EquipmentOption
                     {
                         Code = responseTires.oemOptionCode,
-                        MSRP = responseTires.msrp,
-                        Invoice = responseTires.invoice,
-                        Description = responseTires.descriptions.Select(desc => desc.description).ToList(),
+                        MSRP = Convert.ToDecimal(responseTires.msrp),
+                        Invoice = Convert.ToDecimal(responseTires.invoice),
+                        Description = responseTires.descriptions.Select(desc => desc.description).ToArray(),
                     }).ToList();
                     liststyleConfigration.Add(styleConfigration);
                 }
@@ -117,9 +118,9 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration.EquipmentOptions = responseWheels.Select(responseWheels => new EquipmentOption
                     {
                         Code = responseWheels.oemOptionCode,
-                        MSRP = responseWheels.msrp,
-                        Invoice = responseWheels.invoice,
-                        Description = responseWheels.descriptions.Select(desc => desc.description).ToList(),
+                        MSRP = Convert.ToDecimal(responseWheels.msrp),
+                        Invoice = Convert.ToDecimal(responseWheels.invoice),
+                        Description = responseWheels.descriptions.Select(desc => desc.description).ToArray(),
                     }).ToList();
                     liststyleConfigration.Add(styleConfigration);
                 }
@@ -133,9 +134,9 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration.EquipmentOptions = responseSeatType.Select(responseSeatType => new EquipmentOption
                     {
                         Code = responseSeatType.oemOptionCode,
-                        MSRP = responseSeatType.msrp,
-                        Invoice = responseSeatType.invoice,
-                        Description = responseSeatType.descriptions.Select(desc => desc.description).ToList(),
+                        MSRP = Convert.ToDecimal(responseSeatType.msrp),
+                        Invoice = Convert.ToDecimal(responseSeatType.invoice),
+                        Description = responseSeatType.descriptions.Select(desc => desc.description).ToArray(),
                     }).ToList();
                     liststyleConfigration.Add(styleConfigration);
                 }
@@ -149,9 +150,9 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration.EquipmentOptions = responseDealerOptions.Select(responseDealerOptions => new EquipmentOption
                     {
                         Code = responseDealerOptions.chromeOptionCode,
-                        MSRP = responseDealerOptions.msrp,
-                        Invoice = responseDealerOptions.invoice,
-                        Description = responseDealerOptions.descriptions.Select(desc => desc.description).ToList(),
+                        MSRP = Convert.ToDecimal(responseDealerOptions.msrp),
+                        Invoice = Convert.ToDecimal(responseDealerOptions.invoice),
+                        Description = responseDealerOptions.descriptions.Select(desc => desc.description).ToArray(),
                     }).ToList();
                     liststyleConfigration.Add(styleConfigration);
                 }
@@ -165,9 +166,9 @@ namespace SFM.VehicleBuilder.Application.Queries.GetConfigByStyleQuery
                     styleConfigration.EquipmentOptions = responseAdditionalEquipment.Select(responseAdditionalEquipment => new EquipmentOption
                     {
                         Code = responseAdditionalEquipment.chromeOptionCode,
-                        MSRP = responseAdditionalEquipment.msrp,
-                        Invoice = responseAdditionalEquipment.invoice,
-                        Description = responseAdditionalEquipment.descriptions.Select(desc => desc.description).ToList(),
+                        MSRP = Convert.ToDecimal(responseAdditionalEquipment.msrp),
+                        Invoice = Convert.ToDecimal(responseAdditionalEquipment.invoice),
+                        Description = responseAdditionalEquipment.descriptions.Select(desc => desc.description).ToArray(),
                     }).ToList();
                     liststyleConfigration.Add(styleConfigration);
                 }

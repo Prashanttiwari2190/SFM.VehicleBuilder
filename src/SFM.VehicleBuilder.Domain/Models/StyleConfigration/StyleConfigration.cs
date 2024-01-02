@@ -20,6 +20,6 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a value indicating whether gets or sets a chrome data EquipmentOptions.
         /// </summary>
-        public List<EquipmentOption> EquipmentOptions { get; set; }
+        public IEnumerable<EquipmentOption> EquipmentOptions { get; set; }
     }
 }
