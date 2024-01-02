@@ -222,7 +222,7 @@ namespace SFM.VehicleBuilder.Web.Controllers.V1
         /// </summary>
         /// <param name="styleid"> division information.</param>
         /// <returns>Returns a <see cref="int"/> containg the ModelConfigration of the styles.</returns>
-        [HttpPost("style-config-option")]
+        [HttpPost("style-config-options")]
         [Authorize]
         public async Task<ActionResult<List<StyleConfigration>>> GetConfigurationByStyleId([FromBody] int styleid)
         {

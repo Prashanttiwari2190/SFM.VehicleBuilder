@@ -20,21 +20,21 @@ namespace SFM.VehicleBuilder.Domain.Models
         /// <summary>
         ///   Gets or sets a value indicating whether gets or sets a chrome data Description.
         /// </summary>
-        public List<string> Description { get; set; }
+        public string[] Description { get; set; }
 
         /// <summary>
         ///   Gets or sets a value indicating whether a chrome data MSRP.
         /// </summary>
-        public double MSRP { get; set; }
+        public decimal MSRP { get; set; }
 
         /// <summary>
         ///   Gets or sets a chrome data vehicle Invoice.
         /// </summary>
-        public double Invoice { get; set; }
+        public decimal Invoice { get; set; }
 
         /// <summary>
         ///   Gets or sets a chrome data vehicle Dealer.
         /// </summary>
-        public double Dealer { get; set; }
+        public decimal Dealer { get; set; }
     }
 }
